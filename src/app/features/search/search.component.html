@@ -1,0 +1,30 @@
+<form (ngSubmit)="submit()" [formGroup]="form" class="grid">
+  <mat-form-field appearance="outline">
+    <mat-label>Buscar</mat-label>
+    <input matInput formControlName="q" placeholder="palabra clave, título...">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Desde</mat-label>
+    <input matInput type="date" formControlName="from">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Hasta</mat-label>
+    <input matInput type="date" formControlName="to">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Territorio</mat-label>
+    <input matInput formControlName="territory">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Municipio</mat-label>
+    <input matInput formControlName="municipality">
+  </mat-form-field>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" type="submit">Aplicar filtros</button>
+  </div>
+</form>

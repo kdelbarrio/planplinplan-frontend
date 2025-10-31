@@ -1,0 +1,7 @@
+<section *ngIf="event">
+  <h1>{{ event.title }}</h1>
+  <p>{{ event.when.start | dateLocale }} <ng-container *ngIf="event.when.end">- {{ event.when.end | dateLocale }}</ng-container></p>
+  <p>{{ event.place }}</p>
+  <p>{{ event.priceLabel }}</p>
+  <p>{{ event.tags.join(' · ') }}</p>
+</section>

@@ -1,0 +1,6 @@
+.grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.actions { display: flex; gap: 8px; align-items: center; }

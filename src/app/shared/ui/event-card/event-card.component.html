@@ -1,0 +1,16 @@
+<mat-card class="event">
+  <img *ngIf="event.imageUrl" mat-card-image [src]="event.imageUrl" [alt]="event.title">
+  <mat-card-title>{{ event.title }}</mat-card-title>
+  <mat-card-subtitle>
+    {{ event.when.start | dateLocale }}
+    <ng-container *ngIf="event.when.end">- {{ event.when.end | dateLocale }}</ng-container>
+    <span *ngIf="event.place"> · {{ event.place }}</span>
+  </mat-card-subtitle>
+  <mat-card-content>
+    <div>{{ event.tags | a11yTags }}</div>
+    <div>{{ event.priceLabel }}</div>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/event', event.id]">Ver detalle</a>
+  </mat-card-actions>
+</mat-card>
