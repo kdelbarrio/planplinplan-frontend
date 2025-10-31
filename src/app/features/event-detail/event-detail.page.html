@@ -1,7 +1,63 @@
-<section *ngIf="event">
-  <h1>{{ event.title }}</h1>
-  <p>{{ event.when.start | dateLocale }} <ng-container *ngIf="event.when.end">- {{ event.when.end | dateLocale }}</ng-container></p>
-  <p>{{ event.place }}</p>
-  <p>{{ event.priceLabel }}</p>
-  <p>{{ event.tags.join(' · ') }}</p>
-</section>
+<mat-toolbar color="primary">
+  <button mat-icon-button routerLink="/planes">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>Planes</span>
+</mat-toolbar>
+
+<div class="content" *ngIf="event">
+  <mat-card appearance="outlined">
+    <img *ngIf="event.imageUrl" [src]="event.imageUrl" alt="" mat-card-image>
+    
+    <mat-card-content>
+      <h1 class="title">{{ event.title }}</h1>
+      
+      <!-- Location and Date -->
+      <div class="metadata">
+        <p class="location">
+          <mat-icon>location_on</mat-icon>
+          {{ event.place }}
+        </p>
+        <p class="date" *ngIf="event.when?.start">
+          <mat-icon>calendar_today</mat-icon>
+          {{ event.when.start | dateLocale }}
+          <ng-container *ngIf="event.when?.end"> - {{ event.when.end | dateLocale }}</ng-container>
+        </p>
+      </div>
+
+      <!-- Description -->
+      <p class="description">{{ event.description }}</p>
+
+      <!-- Details Section -->
+      <section class="details">
+        <h2>Detalles:</h2>
+        
+        <div class="detail-row">
+          <div class="detail-item">
+            <h3>Accesibilidad</h3>
+            <p>{{ event.accessibility || 'No especificada' }}</p>
+          </div>
+          
+          <div class="detail-item">
+            <h3>Edad recomendada</h3>
+            <p>{{ event.age_min || 'No especificada' }}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tags -->
+       <!--
+      <mat-chip-set>
+        <mat-chip *ngFor="let tag of event.tags">{{ tag }}</mat-chip>
+      </mat-chip-set>-->
+    </mat-card-content> 
+
+    <!-- Action Button -->
+    <mat-card-actions>
+      <button mat-fab extended color="primary" class="favorite-button">
+        <mat-icon>star</mat-icon>
+        Añadir a favoritos
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

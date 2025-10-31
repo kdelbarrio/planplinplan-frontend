@@ -4,7 +4,17 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class DateLocalePipe implements PipeTransform {
   transform(value: Date | string | undefined, locale = 'es-ES', options: Intl.DateTimeFormatOptions = {}): string {
     if (!value) return '';
-    const d = typeof value === 'string' ? new Date(value) : value;
-    return new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short', ...options }).format(d);
+    
+    try {
+      const d = typeof value === 'string' ? new Date(value) : value;
+      if (isNaN(d.getTime())) {
+        console.warn('Invalid date value:', value);
+        return '';
+      }
+      return new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short', ...options }).format(d);
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return '';
+    }
   }
 }

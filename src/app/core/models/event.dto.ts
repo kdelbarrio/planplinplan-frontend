@@ -1,7 +1,7 @@
 export interface EventDTO {
   id: number;
   title: string;
-  description?: string;
+  description: string;
   starts_at: string;
   ends_at?: string;
   price?: number | null;

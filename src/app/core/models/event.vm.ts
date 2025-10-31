@@ -1,9 +1,13 @@
 export interface EventVM {
   id: number;
   title: string;
-  when: { start: Date; end?: Date };
+  description: string;
+  when: { start: Date | undefined; end?: Date | undefined };
   priceLabel: string;
   tags: string[];
   place: string;
   imageUrl?: string;
+  accessibility?: string[];
+  age_min?: number | null;
+  age_max?: number | null;
 }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { EventDTO } from '../models/event.dto';
 
 @Injectable({ providedIn: 'root' })
@@ -16,6 +17,8 @@ export class ApiService {
   }
 
   getEvent(id: number): Observable<EventDTO> {
-    return this.http.get<EventDTO>(`events/${id}`);
+    // Acepta ambas respuestas: { data: EventDTO } o EventDTO y devuelve siempre EventDTO sin wrapper
+    return this.http.get<EventDTO | { data: EventDTO }>(`events/${id}`)
+      .pipe(map(res => (res as any).data ?? res as EventDTO));
   }
 }

@@ -10,6 +10,8 @@ import { apiBaseUrlInterceptor } from './app/core/interceptors/api-base-url.inte
 import { errorInterceptor } from './app/core/interceptors/error.interceptor';
 import { provideServiceWorker } from '@angular/service-worker';
 import { isDevMode } from '@angular/core';
+import { importProvidersFrom } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -19,6 +21,7 @@ bootstrapApplication(AppComponent, {
       enabled: !isDevMode()
     }),
     provideHttpClient(withInterceptors([apiBaseUrlInterceptor, errorInterceptor])),
-    { provide: FEATURE_TOGGLES, useValue: environment.features }
+    { provide: FEATURE_TOGGLES, useValue: environment.features },
+    importProvidersFrom(MatIconModule)
   ]
 }).catch(err => console.error(err));
