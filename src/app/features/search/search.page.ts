@@ -63,20 +63,20 @@ export class SearchPage {
     const qp: Record<string, string> = {};
     if (v.q?.trim()) qp['q'] = v.q.trim();
     if (v.date) qp['date'] = v.date.toISOString().slice(0,10);
-    if (v.place?.trim()) qp['place'] = v.place.trim();
-    if (v.type) qp['type'] = v.type;
+    if (v.place?.trim()) qp['municipality'] = v.place.trim();
+    if (v.type) qp['type_slug'] = v.type;
     if (v.a11yOnly) qp['a11y'] = '1';
-    if (v.indoor) qp['indoor'] = '1';
+    if (v.indoor) qp['is_indoor'] = '1';
 
     if (this.anyAgeSelected()) {
       const sel = this.ages().filter(a => a.selected);
       const min = Math.min(...sel.map(a => a.min));
       const maxVals = sel.map(a => a.max).filter((n): n is number => n !== null);
       const max = maxVals.length ? Math.max(...maxVals) : null;
-      qp['minAge'] = String(min);
-      if (max !== null) qp['maxAge'] = String(max);
+      qp['age_min'] = String(min);
+      if (max !== null) qp['age_max'] = String(max);
     }
 
-    this.router.navigate(['/events'], { queryParams: qp });
+    this.router.navigate(['/planes'], { queryParams: qp });
   }
 }

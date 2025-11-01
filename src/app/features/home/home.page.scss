@@ -1,0 +1,149 @@
+.home-wrapper {
+  display: grid;
+  gap: 16px;
+  padding: 16px;
+}
+
+.hero {
+  padding: 20px 16px;
+  border-radius: 16px;
+
+  .hero__title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+  .hero__subtitle {
+    margin-top: 4px;
+    opacity: 0.7;
+  }
+}
+
+.section {
+  display: grid;
+  gap: 12px;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+}
+
+/* “¿Cuándo quieres tu plan?” */
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+
+  .quick {
+    height: 72px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    gap: 6px;
+    flex-direction: column;
+    text-transform: none;
+  }
+}
+
+/* Tipos de planes */
+.types-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+
+  .type-chip {
+    border-radius: 16px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: none;
+
+    mat-icon {
+      font-size: 20px;
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+/* Carrusel últimos planes */
+.carousel-wrap {
+  position: relative;
+  display: grid;
+  align-items: center;
+
+  .nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    &.prev { left: -4px; }
+    &.next { right: -4px; }
+  }
+
+  .carousel {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 280px;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 8px 8px 8px 8px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .plan-card {
+    scroll-snap-align: start;
+    border-radius: 16px;
+    display: grid;
+    grid-template-rows: 160px auto auto;
+    overflow: hidden;
+
+    .img {
+      background-size: cover;
+      background-position: center;
+      &.placeholder {
+        background: repeating-linear-gradient(
+          45deg,
+          rgba(0,0,0,.06),
+          rgba(0,0,0,.06) 8px,
+          rgba(0,0,0,.12) 8px,
+          rgba(0,0,0,.12) 16px
+        );
+      }
+    }
+
+    .meta {
+      padding: 12px;
+      .title {
+        font-weight: 600;
+        line-height: 1.2;
+      }
+      .sub {
+        margin-top: 4px;
+        opacity: 0.75;
+        font-size: 13px;
+      }
+    }
+
+    .actions {
+      padding: 0 12px 12px;
+    }
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .quick-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -20,7 +20,7 @@
   <mat-form-field appearance="outline" class="full">
     <mat-label>Lugar</mat-label>
     <span matPrefix class="prefix-ic"><mat-icon>search</mat-icon></span>
-    <input matInput placeholder="San Sebastián" [formControl]="form.controls.place" />
+    <input matInput placeholder="Ciudad o pueblo" [formControl]="form.controls.place" />
     <button *ngIf="form.value.place" mat-icon-button matSuffix aria-label="Borrar lugar" (click)="clearPlace()">
       <mat-icon>close</mat-icon>
     </button>
@@ -35,6 +35,19 @@
       <mat-option value="exposicion">Exposición</mat-option>
       <mat-option value="concierto">Concierto</mat-option>
       <mat-option value="teatro">Teatro</mat-option>
+      <mat-option value="danza">Danza</mat-option>
+      <mat-option value="conferencia">Conferencia</mat-option>
+      <mat-option value="bertsolarismo">Bertsolarismo</mat-option>
+      <mat-option value="feria">Feria</mat-option>
+      <mat-option value="cine-y-audiovisuales">Cine y audiovisuales</mat-option>
+      <mat-option value="eventosjornadas">Eventos/jornadas</mat-option>
+      <mat-option value="formacion">Formación</mat-option>
+      <mat-option value="concurso">Concurso</mat-option>
+      <mat-option value="festival">Festival</mat-option>
+      <mat-option value="actividad-infantil">Actividad Infantil</mat-option>
+      <mat-option value="fiestas">Fiestas</mat-option>
+      <mat-option value="experiencias-top">Experiencias Top</mat-option>
+      <mat-option value="otro">Otro</mat-option>
     </mat-select>
   </mat-form-field>
 

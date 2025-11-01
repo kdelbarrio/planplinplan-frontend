@@ -14,19 +14,37 @@ export interface EventFilters {
   minAge?: number;
   maxAge?: number;
   page?: number;
+  per_page?: number;
+  indoor?: boolean;
+}
+
+interface PaginationMeta {
+  current_page: number;
+  from: number;
+  last_page: number;
+  per_page: number;
+  to: number;
+  total: number;
 }
 
 @Injectable({ providedIn: 'root' })
 export class EventsService {
   private api = inject(ApiService);
 
-  readonly filters = signal<EventFilters>({ page: 1 });
+  readonly filters = signal<EventFilters>({ page: 1, per_page: 50 });
   readonly loading = signal(false);
   readonly total = signal(0);
   readonly events = signal<EventVM[]>([]);
-  readonly page = computed(() => this.filters().page ?? 1);
+  readonly meta = signal<PaginationMeta | null>(null);
 
-  constructor() {
+  // Computed values para la paginación
+  readonly page = computed(() => this.meta()?.current_page ?? 1);
+  readonly lastPage = computed(() => this.meta()?.last_page ?? 1);
+  readonly perPage = computed(() => this.meta()?.per_page ?? 50);
+  readonly hasNextPage = computed(() => this.page() < this.lastPage());
+  readonly hasPrevPage = computed(() => this.page() > 1);
+
+/*  constructor() {
     effect(() => {
       const f = this.filters();
       this.loading.set(true);
@@ -34,6 +52,29 @@ export class EventsService {
         .pipe(finalize(() => this.loading.set(false)))
         .subscribe(res => {
           this.total.set(res.total);
+          
+          this.events.set(res.data.map(adaptEvent));
+        });
+    });
+  }
+  */
+
+    constructor() {
+    effect(() => {
+      const f = this.filters();
+      this.loading.set(true);
+      this.api.searchEvents(this.toApiParams(f))
+        .pipe(finalize(() => this.loading.set(false)))
+        .subscribe(res => {
+          this.total.set(res.total);
+          this.meta.set({
+            current_page: res.page,
+            last_page: Math.ceil(res.total / (res.perPage || 50)),
+            from: ((res.page - 1) * res.perPage) + 1,
+            to: Math.min(res.page * res.perPage, res.total),
+            per_page: res.perPage,
+            total: res.total
+          });
           this.events.set(res.data.map(adaptEvent));
         });
     });
@@ -57,7 +98,9 @@ export class EventsService {
       event_type_id: f.type,
       age_min: f.minAge,
       age_max: f.maxAge,
-      page: f.page ?? 1
+      is_indoor: f.indoor,
+      page: f.page ?? 1,
+      per_page: f.per_page ?? 50   // <-- añadido
     };
   }
 }

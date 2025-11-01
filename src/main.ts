@@ -1,7 +1,7 @@
 import { bootstrapApplication, provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptors, withFetch } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AppComponent } from './app/app.component';
 import { routes } from './app/app.routes';
 import { FEATURE_TOGGLES } from './app/core/tokens/feature-toggles.token';
@@ -18,7 +18,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(withFetch()),
-    provideAnimations(),
+    provideAnimationsAsync(),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode()
     }),

@@ -62,8 +62,7 @@ export class EventsPage {
         this.api.searchEvents({
           ...this.currentFilters(),
           page: String(this.page()),
-          //perPage: String(this.perPage())
-          per_page: String(this.perPage())
+          perPage: String(this.perPage())
         })
       );
       const page: PageResponse<EventDTO> = res;
@@ -75,7 +74,7 @@ export class EventsPage {
     }
   }
 
-/*  pageChange(e: PageEvent) {
+  pageChange(e: PageEvent) {
     const page = e.pageIndex + 1;
     this.router.navigate([], {
       relativeTo: this.route,
@@ -83,54 +82,4 @@ export class EventsPage {
       queryParamsHandling: 'merge'
     });
   }
-*/
-  /*pageChange(e: PageEvent) {
-    if (e.pageSize !== this.perPage()) {
-      this.perPage.set(e.pageSize);
-      this.page.set(1);  // Reset to first page when changing page size
-    } else {
-      this.page.set(e.pageIndex + 1);
-    }
-    
-    // Update URL and reload data
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { 
-        ...this.currentFilters(), 
-        page: this.page(), 
-        perPage: this.perPage() 
-      },
-      queryParamsHandling: 'merge'
-    });
-  }*/
- pageChange(e: PageEvent) {
-  if (e.pageSize !== this.perPage()) {
-    this.perPage.set(e.pageSize);
-    this.page.set(1);  // Reset to first page when changing page size
-    
-    // Update URL and trigger reload with new page size
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { 
-        ...this.currentFilters(), 
-        page: 1,
-        per_page: e.pageSize  // Use per_page to match backend parameter name
-      },
-      queryParamsHandling: 'merge'
-    }).then(() => this.load());  // Force reload after navigation
-  } else {
-    this.page.set(e.pageIndex + 1);
-    
-    // Update URL and trigger reload with new page
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { 
-        ...this.currentFilters(), 
-        page: this.page(),
-        per_page: this.perPage()
-      },
-      queryParamsHandling: 'merge'
-    }).then(() => this.load());  // Force reload after navigation
-  }
-}
 }

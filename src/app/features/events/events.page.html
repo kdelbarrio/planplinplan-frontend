@@ -1,3 +1,4 @@
+<div class="content">
 <section class="results">
   <header class="filters" *ngIf="currentFilters() as f">
     <span *ngIf="f['q']">“{{ f['q'] }}”</span>
@@ -20,7 +21,7 @@
         [length]="total()"
         [pageIndex]="page()-1"
         [pageSize]="perPage()"
-        [pageSizeOptions]="[12,24,48]"
+        [pageSizeOptions]="[12,24,50,100]"
         (page)="pageChange($event)">
       </mat-paginator>
     </ng-container>
@@ -30,3 +31,4 @@
     </ng-template>
   </div>
 </section>
+</div>

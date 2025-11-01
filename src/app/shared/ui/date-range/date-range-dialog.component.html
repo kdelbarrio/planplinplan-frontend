@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Elige fechas</h2>
+<mat-dialog-content>
+  <div class="date-grid">
+    <mat-form-field appearance="outline" class="field">
+      <mat-label>Desde</mat-label>
+      <input matInput [matDatepicker]="pickerFrom" [(ngModel)]="from">
+      <mat-datepicker-toggle matIconSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+      <mat-datepicker #pickerFrom></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="field">
+      <mat-label>Hasta</mat-label>
+      <input matInput [matDatepicker]="pickerTo" [(ngModel)]="to">
+      <mat-datepicker-toggle matIconSuffix [for]="pickerTo"></mat-datepicker-toggle>
+      <mat-datepicker #pickerTo></mat-datepicker>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancelar</button>
+  <button mat-flat-button color="primary" (click)="apply()" [disabled]="!from || !to">Aplicar</button>
+</mat-dialog-actions>
+
+

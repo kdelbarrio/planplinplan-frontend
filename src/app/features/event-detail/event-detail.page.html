@@ -26,7 +26,7 @@
       </div>
 
       <!-- Description -->
-      <p class="description">{{ event.description }}</p>
+      <div class="description" [innerHTML]="event.description | safeHtml"></div>
 
       <!-- Details Section -->
       <section class="details">

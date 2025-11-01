@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { SafeHtmlPipe } from '../../shared/pipes/safe-html.pipe';
 
 @Component({
   standalone: true,
@@ -21,7 +22,8 @@ import { MatChipsModule } from '@angular/material/chips';
     MatIconModule,
     MatToolbarModule,
     MatCardModule,
-    MatChipsModule
+    MatChipsModule,
+    SafeHtmlPipe
   ]
 })
 export class EventDetailPage {

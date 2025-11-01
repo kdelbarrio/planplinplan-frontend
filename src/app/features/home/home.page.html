@@ -1,0 +1,91 @@
+<div class="home-wrapper">
+
+  <!-- Hero -->
+  <mat-card class="hero">
+    <div class="hero__title">Plan Plin Plan</div>
+    <div class="hero__subtitle">Planes en Euskadi para disfrutar en familia</div>
+  </mat-card>
+
+  <!-- Cuándo quieres tu plan -->
+  <section class="section">
+    <div class="section__header">
+      <h2>¿Cuándo quieres tu plan?</h2>
+    </div>
+
+    <div class="quick-grid">
+      <button mat-button class="quick" (click)="goToday()">
+        <mat-icon>calendar_today</mat-icon>
+        <span>Hoy</span>
+      </button>
+
+      <button mat-button class="quick" (click)="goTomorrow()">
+        <mat-icon>event</mat-icon>
+        <span>Mañana</span>
+      </button>
+
+      <button mat-button class="quick" (click)="goNextWeekend()">
+        <mat-icon>weekend</mat-icon>
+        <span>Fin de semana</span>
+      </button>
+
+      <button mat-button class="quick" (click)="openDateDialog()">
+        <mat-icon>date_range</mat-icon>
+        <span>Otra fecha</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Tipos de planes -->
+  <section class="section">
+    <div class="section__header">
+      <h2>Tipos de planes</h2>
+    </div>
+
+    <div class="types-row">
+      <button
+        mat-stroked-button
+        class="type-chip"
+        *ngFor="let t of planTypes"
+        (click)="goType(t.id)">
+        <mat-icon>{{ t.icon }}</mat-icon>
+        <span>{{ t.label }}</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Últimos planes añadidos -->
+  <section class="section">
+    <div class="section__header">
+      <h2>Últimos planes añadidos</h2>
+      <button mat-icon-button aria-label="Ver más" [routerLink]="['/planes']">
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </div>
+
+    <div class="carousel-wrap">
+      <button mat-mini-fab class="nav prev" (click)="scroll('prev')" aria-label="Anterior">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+
+      <div #carousel class="carousel" tabindex="0">
+        <mat-card class="plan-card" *ngFor="let p of latest">
+          <div class="img" [class.placeholder]="!p.image" [style.backgroundImage]="p.image ? 'url(' + p.image + ')' : ''"></div>
+          <div class="meta">
+            <div class="title">{{ p.title }}</div>
+            <div class="sub">{{ p.city }} ({{ p.date | date:'dd/MM/yyyy' }})</div>
+          </div>
+          <div class="actions">
+            <a mat-button [routerLink]="['/event', p.id]">
+              Ver detalle
+            </a>
+          </div>
+        </mat-card>
+      </div>
+
+      <button mat-mini-fab class="nav next" (click)="scroll('next')" aria-label="Siguiente">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </section>
+
+</div>

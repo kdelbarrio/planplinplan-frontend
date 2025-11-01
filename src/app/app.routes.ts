@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { HomePage } from './features/home/home.page';
 import { EventsPage } from './features/events/events.page';
 import { EventDetailPage } from './features/event-detail/event-detail.page';
 import { SearchPage } from './features/search/search.page';
@@ -11,11 +12,12 @@ export const routes: Routes = [
     path: '',
     component: AppShellComponent,
   children: [
+    { path: '', component: HomePage, title: 'Planes' },
     { path: 'planes', component: EventsPage, title: 'Planes' },
     { path: 'buscar', component: SearchPage, title: 'Buscar Planes' },
     { path: 'event/:id', component: EventDetailPage, title: 'Detalle del Plan' },
     { path: 'favorites', component: FavoritesPage, canActivate: [authGuard], title: 'Favoritos' },
   ]
   },
-  { path: '**', redirectTo: 'planes' }
+  { path: '**', redirectTo: '' }
 ];

@@ -23,8 +23,11 @@ export class SearchComponent {
     to: [''],
     territory: [''],
     municipality: [''],
-    minAge: [null],
-    maxAge: [null]
+    type_src: [''],
+    age_min: [null],
+    age_max: [null],
+    accessibility_tags: [''],
+    is_indoor: [null]
   });
 
 submit() {
