@@ -1,0 +1,23 @@
+<app-search></app-search>
+
+<mat-progress-bar *ngIf="svc.loading()" mode="indeterminate"></mat-progress-bar>
+
+<div class="list">
+  <app-event-card *ngFor="let ev of svc.events()" [event]="ev"></app-event-card>
+</div>
+
+<mat-paginator
+  [length]="svc.total()"
+  [pageIndex]="(svc.page() - 1)"
+  [pageSize]="20"
+  [pageSizeOptions]="[10,20,50]"
+  (page)="onPage($event)">
+</mat-paginator>
+
+<style>
+.list{
+  display:grid;
+  gap:12px;
+  grid-template-columns:repeat(auto-fill, minmax(280px, 1fr));
+}
+</style>

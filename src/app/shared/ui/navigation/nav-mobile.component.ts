@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-nav-mobile',
   standalone: true,
-  imports: [MatIconModule, RouterLink, RouterLinkActive],
+  imports: [MatIconModule, RouterLink, RouterLinkActive, MatToolbarModule],
   template: `
+    <mat-toolbar color="primary">
+      <span><img src="assets/images/logo.svg" alt="Plan Plin Plan"></span>
+    </mat-toolbar>
     <nav class="bottom-nav" role="navigation" aria-label="Navegación inferior">
-      <a class="item" routerLink="/search" routerLinkActive="active" [attr.aria-current]="rla.isActive ? 'page' : null" #rla="routerLinkActive">
+      <a class="item" routerLink="/buscar" routerLinkActive="active" [attr.aria-current]="rla.isActive ? 'page' : null" #rla="routerLinkActive">
         <span class="icon-wrap"><mat-icon>search</mat-icon></span>
         <span class="label">Buscar plan</span>
       </a>

@@ -10,14 +10,14 @@ import { NavMobileComponent } from '../shared/ui/navigation/nav-mobile.component
   template: `
     <!-- Nav desktop -->
     <app-nav-desktop class="hide-sm"></app-nav-desktop>
-
+    <!-- Nav móvil -->
+    <app-nav-mobile class="show-sm"></app-nav-mobile>
     <!-- Contenido -->
     <main class="app-content">
       <router-outlet></router-outlet>
     </main>
 
-    <!-- Nav móvil -->
-    <app-nav-mobile class="show-sm"></app-nav-mobile>
+
   `,
   styles: [`
     :host { display: contents; }

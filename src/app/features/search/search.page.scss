@@ -1,0 +1,35 @@
+.search {
+  display: grid;
+  gap: 14px;
+  padding-bottom: 76px; // para no tapar el bottom-nav en móvil
+}
+
+.full { width: 100%; }
+
+.prefix-ic {
+  display: inline-grid;
+  place-items: center;
+  margin-right: 6px;
+}
+
+.group { margin-top: 4px; }
+.group-title {
+  font-size: .85rem;
+  color: var(--mat-sys-on-surface-variant);
+  margin: 0 0 6px;
+}
+
+.chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  mat-chip {
+    border-radius: 999px;
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 6px;
+}

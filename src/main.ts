@@ -1,5 +1,5 @@
-import { bootstrapApplication } from '@angular/platform-browser';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { bootstrapApplication, provideClientHydration } from '@angular/platform-browser';
+import { provideHttpClient, withInterceptors, withFetch } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { AppComponent } from './app/app.component';
@@ -16,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
+    provideClientHydration(),
+    provideHttpClient(withFetch()),
     provideAnimations(),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode()

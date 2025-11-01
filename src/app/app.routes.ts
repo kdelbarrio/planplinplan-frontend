@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { EventsPage } from './features/events/events.page';
 import { EventDetailPage } from './features/event-detail/event-detail.page';
+import { SearchPage } from './features/search/search.page';
 import { FavoritesPage } from './features/favorites/favorites.page';
 import { authGuard } from './core/guards/auth.guard';
 import { AppShellComponent } from './layout/app-shell.component';
@@ -11,6 +12,7 @@ export const routes: Routes = [
     component: AppShellComponent,
   children: [
     { path: 'planes', component: EventsPage, title: 'Planes' },
+    { path: 'buscar', component: SearchPage, title: 'Buscar Planes' },
     { path: 'event/:id', component: EventDetailPage, title: 'Detalle del Plan' },
     { path: 'favorites', component: FavoritesPage, canActivate: [authGuard], title: 'Favoritos' },
   ]

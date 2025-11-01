@@ -10,10 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatToolbarModule, MatButtonModule, MatIconModule, RouterLink, RouterLinkActive],
   template: `
     <mat-toolbar color="primary" role="navigation" aria-label="Navegación principal">
-      <span>Plan Plin Plan</span>
+      <span><img src="assets/images/logo.svg" alt="Plan Plin Plan" ></span>
       <span class="spacer"></span>
 
-      <a mat-button routerLink="/search" routerLinkActive="active" [attr.aria-current]="rla.isActive ? 'page' : null" #rla="routerLinkActive">
+      <a mat-button routerLink="/buscar" routerLinkActive="active" [attr.aria-current]="rla.isActive ? 'page' : null" #rla="routerLinkActive">
         <mat-icon>search</mat-icon>
         Buscar plan
       </a>

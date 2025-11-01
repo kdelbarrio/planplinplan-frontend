@@ -1,0 +1,27 @@
+.results {
+  display: grid;
+  gap: 12px;
+}
+
+.filters {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: .9rem;
+}
+
+.spinner {
+  display: grid;
+  place-items: center;
+  min-height: 40vh;
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    align-items: start;
+  }
+}

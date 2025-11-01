@@ -19,6 +19,8 @@
             "polyfills": ["zone.js"],
             "outputPath": "dist/plan-plin-plan/browser",
             "assets": [
+              "src/favicon.ico",
+              "src/assets",
               { "glob": "**/*", "input": "public" },
               "src/manifest.webmanifest"
             ],

@@ -1,0 +1,65 @@
+<section class="search">
+  <!-- Texto -->
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Texto a buscar...</mat-label>
+    <input matInput placeholder="texto a buscar..." [formControl]="form.controls.q" />
+    <button mat-icon-button matSuffix aria-label="Buscar" (click)="submit()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <!-- Fecha -->
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Fecha</mat-label>
+    <input matInput [matDatepicker]="picker" [formControl]="form.controls.date" />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- Lugar -->
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Lugar</mat-label>
+    <span matPrefix class="prefix-ic"><mat-icon>search</mat-icon></span>
+    <input matInput placeholder="San Sebastián" [formControl]="form.controls.place" />
+    <button *ngIf="form.value.place" mat-icon-button matSuffix aria-label="Borrar lugar" (click)="clearPlace()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <!-- Tipo -->
+  <mat-form-field appearance="outline" class="full">
+    <mat-label>Tipo de plan</mat-label>
+    <mat-select [formControl]="form.controls.type">
+      <mat-option value="">Todos los tipos</mat-option>
+      <mat-option value="taller">Taller</mat-option>
+      <mat-option value="exposicion">Exposición</mat-option>
+      <mat-option value="concierto">Concierto</mat-option>
+      <mat-option value="teatro">Teatro</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Edad -->
+  <div class="group">
+    <div class="group-title">Edad recomendada</div>
+    <mat-chip-set class="chips" aria-label="Selecciona rango(s) de edad">
+      <mat-chip-option
+        *ngFor="let a of ages(); trackBy: agesTrackBy"
+        [selected]="a.selected"
+        (click)="toggleAge(a)">
+        {{ a.label }}
+      </mat-chip-option>
+    </mat-chip-set>
+  </div>
+
+  <!-- Checks -->
+  <mat-checkbox [formControl]="form.controls.a11yOnly">Solo sitios accesibles</mat-checkbox>
+  <mat-checkbox [formControl]="form.controls.indoor">Solo sitios cubiertos</mat-checkbox>
+
+  <!-- Botón -->
+  <div class="actions">
+    <button mat-fab extended color="primary" (click)="submit()">
+      <mat-icon>search</mat-icon>
+      Buscar
+    </button>
+  </div>
+</section>
