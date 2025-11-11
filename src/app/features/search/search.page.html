@@ -20,7 +20,9 @@
 <mat-form-field appearance="outline" class="full">
   <mat-label>Fecha</mat-label>
 
-  <mat-date-range-input [rangePicker]="picker">
+  <mat-date-range-input [rangePicker]="picker"
+                        (focusin)="openDatepicker(picker)"
+                        (click)="openDatepicker(picker)">
     <input matStartDate matInput placeholder="Desde" [formControl]="form.controls.date_from">
     <input matEndDate   matInput placeholder="Hasta" [formControl]="form.controls.date_to">
   </mat-date-range-input>
@@ -30,14 +32,45 @@
 </mat-form-field>
 
   <!-- Lugar -->
-  <mat-form-field appearance="outline" class="full">
+  <!--<mat-form-field appearance="outline" class="full">
     <mat-label>Lugar</mat-label>
     <span matPrefix class="prefix-ic"><mat-icon>search</mat-icon></span>
     <input matInput placeholder="Ciudad o pueblo" [formControl]="form.controls.place" />
     <button *ngIf="form.value.place" mat-icon-button matSuffix aria-label="Borrar lugar" (click)="clearPlace()">
       <mat-icon>close</mat-icon>
     </button>
-  </mat-form-field>
+  </mat-form-field>-->
+
+    <!-- Lugar con Autocomplete (JSON local) -->
+ <mat-form-field appearance="outline" class="full">
+  <mat-label>Lugar</mat-label>
+  <span matPrefix class="prefix-ic"><mat-icon>search</mat-icon></span>
+
+  <input matInput
+         placeholder="Ciudad o pueblo"
+         [formControl]="form.controls.place"
+         [matAutocomplete]="auto">
+
+  <button *ngIf="form.value.place"
+          mat-icon-button matSuffix
+          aria-label="Borrar lugar"
+          (click)="clearPlace()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <mat-icon matSuffix *ngIf="suggestLoading()">hourglass_empty</mat-icon>
+
+  <mat-autocomplete #auto="matAutocomplete"
+                    (optionSelected)="onMunicipalitySelected($event.option.value)">
+    <mat-option *ngFor="let m of municipalityOptions()" [value]="m">
+      {{ m }}
+    </mat-option>
+
+    <mat-option *ngIf="!suggestLoading() && (form.value.place?.length ?? 0) >= 2 && municipalityOptions().length === 0" disabled>
+      Sin coincidencias
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
 
   <!-- Tipo -->
   <mat-form-field appearance="outline" class="full">

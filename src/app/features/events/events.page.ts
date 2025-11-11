@@ -13,6 +13,7 @@ import { EventDTO } from '../../core/models/event.dto';
 import { MatIcon } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatButtonModule } from '@angular/material/button';
 
 // 👉 IMPORTANTE: usamos toSignal para escuchar cambios en query params
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -36,7 +37,8 @@ type Chip = { key: string; value?: string; text: string };
     MatProgressSpinnerModule,
     MatIcon,
     MatDividerModule,
-    MatChipsModule
+    MatChipsModule, 
+    MatButtonModule
   ],
   templateUrl: './events.page.html',
   styleUrls: ['./events.page.scss']
