@@ -5,13 +5,17 @@ import { MatCardModule } from '@angular/material/card';
 import { EventVM } from '../../../core/models/event.vm';
 import { DateLocalePipe } from '../../pipes/date-locale.pipe';;
 //import { A11yTagsPipe } from '../../pipes/a11y-tags.pipe';
+import {MatButtonModule} from '@angular/material/button';
+import { IsSameDayPipe } from '../../pipes/is-same-day.pipe';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
 @Component({
   selector: 'app-event-card',
   standalone: true,
-  imports: [NgIf,MatCardModule, DateLocalePipe, RouterModule],
+  imports: [NgIf,MatCardModule, DateLocalePipe, RouterModule, MatButtonModule, IsSameDayPipe, MatDividerModule, MatIconModule],
   templateUrl: './event-card.component.html',
   styleUrls: ['./event-card.component.scss']
 })

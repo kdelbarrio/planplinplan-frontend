@@ -1,34 +1,51 @@
-<div class="content">
-<section class="results">
-  <header class="filters" *ngIf="currentFilters() as f">
-    <span *ngIf="f['q']">“{{ f['q'] }}”</span>
-    <span *ngIf="f['place']"> · {{ f['place'] }}</span>
-    <span *ngIf="f['date']"> · {{ f['date'] }}</span>
-    <span *ngIf="f['type']"> · {{ f['type'] }}</span>
-    <span *ngIf="f['minAge']"> · {{ f['minAge'] }}-{{ f['maxAge'] || '+' }}</span>
-    <span *ngIf="f['a11y']"> · Accesibles</span>
-    <span *ngIf="f['indoor']"> · Cubiertos</span>
+<section class="container events">
+<!-- FILTROS -->
+  <header class="events__filters">
+    <!--<mat-chip-set aria-label="Filtros activos" class="events__chips">
+      <mat-chip-row removable><mat-icon matChipRemove>close</mat-icon>Fecha: Hoy</mat-chip-row>
+      <mat-chip-row removable><mat-icon matChipRemove>close</mat-icon>Lugar: San Sebastián</mat-chip-row>
+      <mat-chip-row removable><mat-icon matChipRemove>close</mat-icon>Tipo: Teatro</mat-chip-row>
+      <mat-chip-row>Edad: 3-10</mat-chip-row>
+      <mat-chip-row>Accesible</mat-chip-row>
+    </mat-chip-set>-->
+
+      <mat-chip-set aria-label="Filtros activos" class="events__chips" *ngIf="chips().length">
+      <mat-chip-row
+        *ngFor="let c of chips(); trackBy: chipTrackBy"
+        [removable]="true"
+        (removed)="removeChip(c)">
+        <mat-icon matChipRemove>close</mat-icon>
+        {{ c.text }}
+      </mat-chip-row>
+    </mat-chip-set>
+
+    <button mat-fab extended color="primary" aria-label="Abrir filtros" (click)="openFilters()">
+      <mat-icon>search</mat-icon>
+      Filtrar
+    </button>
   </header>
 
   <div class="spinner" *ngIf="loading()">
     <mat-spinner diameter="36"></mat-spinner>
   </div>
 
-  <div class="list" *ngIf="!loading()">
+  <div class="events__grid" *ngIf="!loading()">
     <ng-container *ngIf="items().length; else empty">
       <app-event-card *ngFor="let ev of items()" [event]="ev" />
-      <mat-paginator
-        [length]="total()"
-        [pageIndex]="page()-1"
-        [pageSize]="perPage()"
-        [pageSizeOptions]="[12,24,50,100]"
-        (page)="pageChange($event)">
-      </mat-paginator>
+
     </ng-container>
 
     <ng-template #empty>
       <p class="empty">No hay resultados con los filtros aplicados.</p>
     </ng-template>
   </div>
+  <div class="paginator">
+    <mat-paginator 
+        [length]="total()"
+        [pageIndex]="page()-1"
+        [pageSize]="perPage()"
+        [pageSizeOptions]="[12,24,50,100]"
+        (page)="pageChange($event)">
+    </mat-paginator>
+  </div>
 </section>
-</div>

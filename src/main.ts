@@ -12,6 +12,8 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { isDevMode } from '@angular/core';
 import { importProvidersFrom } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { getSpanishPaginatorIntl } from './app/shared/i18n/spanish-paginator-intl';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -19,6 +21,7 @@ bootstrapApplication(AppComponent, {
     provideClientHydration(),
     provideHttpClient(withFetch()),
     provideAnimationsAsync(),
+    { provide: MatPaginatorIntl, useValue: getSpanishPaginatorIntl() },
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode()
     }),

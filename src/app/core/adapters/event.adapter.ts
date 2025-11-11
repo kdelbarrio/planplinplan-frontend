@@ -25,6 +25,7 @@ export function adaptEvent(dto: EventDTO): EventVM {
       when: { start, end },
       priceLabel: (dto as any).price == null ? '(no se indica)' : `${(dto as any).price.toFixed(2)} €`,
       tags,
+      municipality: dto.municipality,
       place: [ dto.municipality, dto.territory ].filter(Boolean).join(' · '),
       imageUrl: dto.image_url ?? undefined
     };

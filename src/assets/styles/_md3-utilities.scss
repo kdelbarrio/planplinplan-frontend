@@ -1,0 +1,132 @@
+/* === MD3 Utilities (layout + helpers) === */
+/* Escala de 4px, contenedores y breakpoints aproximados a pautas MD */
+
+:root {
+  /* Spacing (4px scale) */
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  /* Radius (alineado con MD3 shape) */
+  --radius-s: 8px;
+  --radius-m: 12px;
+  --radius-l: 16px;
+
+  /* Anchuras de contenedor */
+  --container-sm: 600px;
+  --container-md: 840px;
+  --container-lg: 1200px;
+  --container-xl: 1600px;
+}
+
+/* Breakpoints guía (aprox) */
+@media (min-width: 600px)  { /* sm */ }
+@media (min-width: 840px)  { /* md */ }
+@media (min-width: 1200px) { /* lg */ }
+@media (min-width: 1600px) { /* xl */ }
+
+/* ===== Contenedor centrado ===== */
+.container {
+  /*width: 100%;*/
+  margin-inline: auto;
+  /*padding-inline: var(--space-4);*/
+  max-width: var(--container-sm);
+}
+@media (min-width: 840px)  { .container { max-width: var(--container-md); } }
+@media (min-width: 1200px) { .container { max-width: var(--container-lg); } }
+@media (min-width: 1600px) { .container { max-width: var(--container-xl); } }
+
+/* ===== Grid responsivo ===== */
+.grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 600px)  { .grid.cols-2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 840px)  { .grid.cols-3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1200px) { .grid.cols-4 { grid-template-columns: repeat(4, 1fr); } }
+
+/* ===== Patrones de layout ===== */
+/* Stack: espaciado vertical entre hermanos */
+.stack > * + * { margin-block-start: var(--space-4); }
+
+/* Cluster: fila flexible con wrap y gap */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+/* Switcher: columnas automáticas con ancho mínimo de ítem */
+.switcher {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 840px) {
+  .switcher { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+}
+
+/* ===== Utilidades rápidas ===== */
+.flex       { display: flex; }
+.flex-col   { display: flex; flex-direction: column; }
+.center     { display: grid; place-items: center; }
+
+.gap-2 { gap: var(--space-2); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+
+.p-4  { padding: var(--space-4); }
+.px-4 { padding-inline: var(--space-4); }
+.py-4 { padding-block: var(--space-4); }
+
+.round-s { border-radius: var(--radius-s); }
+.round-m { border-radius: var(--radius-m); }
+.round-l { border-radius: var(--radius-l); }
+
+/* ===== Imágenes ===== */
+.img-fluid { display: block; max-width: 100%; height: auto; }
+
+.ratio-16x9 { aspect-ratio: 16 / 9; }
+.ratio-1x1  { aspect-ratio: 1 / 1; }
+
+.cover > img, .img-cover {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+}
+
+.contain > img, .img-contain {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* ===== Alineación de texto  ===== */
+.text-start  { text-align: start; }
+.text-center { text-align: center; }
+.text-end    { text-align: end; }
+
+/* Alineación en contenedores flex/grid */
+.items-center     { align-items: center; }
+.justify-between  { justify-content: space-between; }
+
+/* ===== Flujo tipográfico limpio ===== */
+.flow > * + * { margin-block-start: var(--space-3); }
+
+/* ===== Accesibilidad: reducir movimiento si procede ===== */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

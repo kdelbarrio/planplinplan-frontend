@@ -9,12 +9,25 @@
   </mat-form-field>
 
   <!-- Fecha -->
-  <mat-form-field appearance="outline" class="full">
+  <!--<mat-form-field appearance="outline" class="full">
     <mat-label>Fecha</mat-label>
     <input matInput [matDatepicker]="picker" [formControl]="form.controls.date" />
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
+  -->
+  <!-- Fecha (rango) -->
+<mat-form-field appearance="outline" class="full">
+  <mat-label>Fecha</mat-label>
+
+  <mat-date-range-input [rangePicker]="picker">
+    <input matStartDate matInput placeholder="Desde" [formControl]="form.controls.date_from">
+    <input matEndDate   matInput placeholder="Hasta" [formControl]="form.controls.date_to">
+  </mat-date-range-input>
+
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+</mat-form-field>
 
   <!-- Lugar -->
   <mat-form-field appearance="outline" class="full">

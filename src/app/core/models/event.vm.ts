@@ -5,6 +5,7 @@ export interface EventVM {
   when: { start: Date | undefined; end?: Date | undefined };
   priceLabel: string;
   tags: string[];
+  municipality?: string;
   place: string;
   imageUrl?: string;
   accessibility?: string[];
