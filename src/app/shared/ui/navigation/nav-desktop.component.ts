@@ -18,12 +18,12 @@ import { MatIconModule } from '@angular/material/icon';
         Buscar plan
       </a>
 
-      <a mat-button routerLink="/places" routerLinkActive="active" [attr.aria-current]="rla2.isActive ? 'page' : null" #rla2="routerLinkActive">
+      <a mat-button routerLink="/favoritos/lugares" routerLinkActive="active" [attr.aria-current]="rla2.isActive ? 'page' : null" #rla2="routerLinkActive">
         <mat-icon>place</mat-icon>
         Mis lugares
       </a>
 
-      <a mat-button routerLink="/plans" routerLinkActive="active" [attr.aria-current]="rla3.isActive ? 'page' : null" #rla3="routerLinkActive">
+      <a mat-button routerLink="/favoritos/planes" routerLinkActive="active" [attr.aria-current]="rla3.isActive ? 'page' : null" #rla3="routerLinkActive">
         <mat-icon>star</mat-icon>
         Mis planes
       </a>

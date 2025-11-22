@@ -1,0 +1,52 @@
+<section class="container events">
+  <h1>Mis lugares favoritos</h1>
+<div class="events__grid">
+  <mat-form-field appearance="outline" class="w-full mb-4">
+    <mat-label><mat-icon>add</mat-icon> Añadir municipio</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="form.controls.place"
+      [matAutocomplete]="auto"
+      placeholder="Escribe para buscar…">
+    <button matSuffix mat-icon-button *ngIf="form.controls.place.value" (click)="clearPlace()" aria-label="Limpiar">
+      <mat-icon>close</mat-icon>
+    </button>
+
+  <mat-autocomplete #auto="matAutocomplete"
+                    (optionSelected)="onMunicipalitySelected($event.option.value)">
+    <mat-option *ngFor="let m of municipalityOptions()" [value]="m">
+      {{ m }}
+    </mat-option>
+
+    <mat-option *ngIf="!suggestLoading() && (form.value.place?.length ?? 0) >= 2 && municipalityOptions().length === 0" disabled>
+      Sin coincidencias
+    </mat-option>
+  </mat-autocomplete>
+
+  </mat-form-field>
+
+  <ng-container *ngIf="(places$ | async) as places">
+    <p *ngIf="!places.length" >Aún no has guardado lugares.</p>
+
+    <div *ngIf="places.length">
+      <mat-card *ngFor="let l of places" class="event-card mat-elevation-z1" appearance="outlined">
+         <div>
+           <mat-icon matListItemAvatar>place</mat-icon>
+         </div>
+        <div class="event-card__body">
+         
+          <div matListItemTitle>{{ l.municipality }}</div>
+          <!--<div matListItemLine class="opacity-70">ID: {{ l.municipalityId }}</div>-->
+        </div>
+        <div class="event-card__trail"> 
+          <button mat-icon-button (click)="searchPlans(l)"><mat-icon>search</mat-icon> Buscar planes</button>
+          <button mat-icon-button (click)="remove(l.municipalityId)" [matTooltip]="'Eliminar lugar'">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </ng-container>
+</div>
+</section>

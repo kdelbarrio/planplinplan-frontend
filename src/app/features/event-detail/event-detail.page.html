@@ -58,6 +58,12 @@
         <mat-icon>star</mat-icon>
         Añadir a favoritos
       </button>
+      <button mat-icon-button
+        [attr.aria-pressed]="isFav ? 'true' : 'false'"
+        [matTooltip]="isFav ? 'Quitar de favoritos' : 'Guardar en favoritos'"
+        (click)="toggleFav()">
+        <mat-icon>{{ isFav ? 'favorite' : 'favorite_border' }}</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

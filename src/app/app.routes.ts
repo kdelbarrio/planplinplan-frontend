@@ -3,7 +3,8 @@ import { HomePage } from './features/home/home.page';
 import { EventsPage } from './features/events/events.page';
 import { EventDetailPage } from './features/event-detail/event-detail.page';
 import { SearchPage } from './features/search/search.page';
-import { FavoritesPage } from './features/favorites/favorites.page';
+import { FavoritesPlansPage } from './features/favorites/favorites-plans.page';
+import { FavoritesPlacesPage } from './features/favorites/favorites-places.page';
 import { authGuard } from './core/guards/auth.guard';
 import { AppShellComponent } from './layout/app-shell.component';
 
@@ -16,7 +17,8 @@ export const routes: Routes = [
     { path: 'planes', component: EventsPage, title: 'Planes' },
     { path: 'buscar', component: SearchPage, title: 'Buscar Planes' },
     { path: 'event/:id', component: EventDetailPage, title: 'Detalle del Plan' },
-    { path: 'favorites', component: FavoritesPage, canActivate: [authGuard], title: 'Favoritos' },
+    { path: 'favoritos/planes', component: FavoritesPlansPage, title: 'Planes favoritos' },
+    { path: 'favoritos/lugares', component: FavoritesPlacesPage, title: 'Lugares favoritos' },
   ]
   },
   { path: '**', redirectTo: '' }

@@ -1,14 +1,6 @@
 <section class="container events">
 <!-- FILTROS -->
   <header class="events__filters">
-    <!--<mat-chip-set aria-label="Filtros activos" class="events__chips">
-      <mat-chip-row removable><mat-icon matChipRemove>close</mat-icon>Fecha: Hoy</mat-chip-row>
-      <mat-chip-row removable><mat-icon matChipRemove>close</mat-icon>Lugar: San Sebastián</mat-chip-row>
-      <mat-chip-row removable><mat-icon matChipRemove>close</mat-icon>Tipo: Teatro</mat-chip-row>
-      <mat-chip-row>Edad: 3-10</mat-chip-row>
-      <mat-chip-row>Accesible</mat-chip-row>
-    </mat-chip-set>-->
-
       <mat-chip-set aria-label="Filtros activos" class="events__chips" *ngIf="chips().length">
       <mat-chip-row
         *ngFor="let c of chips(); trackBy: chipTrackBy"

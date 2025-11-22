@@ -1,0 +1,39 @@
+<section class="container events">
+  <h1>Mis planes favoritos</h1>
+<div class="events__grid">
+  <ng-container *ngIf="(plans$ | async) as plans">
+    <p *ngIf="!plans.length" class="opacity-70">Aún no tienes planes guardados.</p>
+
+    <div *ngIf="plans.length">
+      <mat-card *ngFor="let p of plans" class="event-card mat-elevation-z1" appearance="outlined">
+        <div class="event-card__lead">
+          <img mat-card-sm-image *ngIf="p.image" [src]="p.image" alt="" loading="lazy" >
+        </div>
+        <div class="event-card__body">
+          <div matListItemTitle class="event-card__title mat-title-medium line-clamp-2">{{ p.title }}</div>
+          <div matListItemLine class="event-card__place">
+            {{ p.municipality }}
+          </div>
+        </div>
+        <div class="event-card__trail"> 
+          <button mat-icon-button [matMenuTriggerFor]="menu" (click)="$event.stopPropagation()">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="share(p)">
+              <mat-icon>ios_share</mat-icon>
+              <span>Enviar a…</span>
+            </button>
+            <button mat-menu-item (click)="remove(p.id)">
+              <mat-icon>delete</mat-icon>
+              <span>Quitar de favoritos</span>
+            </button>
+          </mat-menu>
+        </div>
+      </mat-card>
+    </div>
+    
+  </ng-container>
+</div>
+</section>

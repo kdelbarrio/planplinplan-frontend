@@ -17,12 +17,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         <span class="label">Buscar plan</span>
       </a>
 
-      <a class="item" routerLink="/places" routerLinkActive="active" [attr.aria-current]="rla2.isActive ? 'page' : null" #rla2="routerLinkActive">
+      <a class="item" routerLink="/favoritos/lugares" routerLinkActive="active" [attr.aria-current]="rla2.isActive ? 'page' : null" #rla2="routerLinkActive">
         <span class="icon-wrap"><mat-icon>place</mat-icon></span>
         <span class="label">Mis lugares</span>
       </a>
 
-      <a class="item" routerLink="/plans" routerLinkActive="active" [attr.aria-current]="rla3.isActive ? 'page' : null" #rla3="routerLinkActive">
+      <a class="item" routerLink="/favoritos/planes" routerLinkActive="active" [attr.aria-current]="rla3.isActive ? 'page' : null" #rla3="routerLinkActive">
         <span class="icon-wrap"><mat-icon>star</mat-icon></span>
         <span class="label">Mis planes</span>
       </a>

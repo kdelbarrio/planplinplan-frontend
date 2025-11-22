@@ -40,7 +40,7 @@
 }
 @media (min-width: 840px)  { .container { max-width: var(--container-md); } }
 @media (min-width: 1200px) { .container { max-width: var(--container-lg); } }
-@media (min-width: 1600px) { .container { max-width: var(--container-xl); } }
+/*@media (min-width: 1600px) { .container { max-width: var(--container-xl); } }*/
 
 /* ===== Grid responsivo ===== */
 .grid {
@@ -50,7 +50,7 @@
 }
 @media (min-width: 600px)  { .grid.cols-2 { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 840px)  { .grid.cols-3 { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1200px) { .grid.cols-4 { grid-template-columns: repeat(4, 1fr); } }
+/*@media (min-width: 1200px) { .grid.cols-4 { grid-template-columns: repeat(4, 1fr); } }*/
 
 /* ===== Patrones de layout ===== */
 /* Stack: espaciado vertical entre hermanos */
