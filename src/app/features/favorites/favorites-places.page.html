@@ -1,7 +1,7 @@
 <section class="container events">
   <h1>Mis lugares favoritos</h1>
 <div class="events__grid">
-  <mat-form-field appearance="outline" class="w-full mb-4">
+  <mat-form-field appearance="outline">
     <mat-label><mat-icon>add</mat-icon> Añadir municipio</mat-label>
     <input
       type="text"
@@ -32,19 +32,25 @@
     <div *ngIf="places.length">
       <mat-card *ngFor="let l of places" class="event-card mat-elevation-z1" appearance="outlined">
          <div>
-           <mat-icon matListItemAvatar>place</mat-icon>
+           <mat-icon>place</mat-icon>
          </div>
         <div class="event-card__body">
-         
-          <div matListItemTitle>{{ l.municipality }}</div>
+
+          <h2>{{ l.municipality }}</h2>
+          
           <!--<div matListItemLine class="opacity-70">ID: {{ l.municipalityId }}</div>-->
+<div><button matFab extended  (click)="searchPlans(l)"><mat-icon>search</mat-icon> Buscar planes</button></div>
+
         </div>
-        <div class="event-card__trail"> 
-          <button mat-icon-button (click)="searchPlans(l)"><mat-icon>search</mat-icon> Buscar planes</button>
-          <button mat-icon-button (click)="remove(l.municipalityId)" [matTooltip]="'Eliminar lugar'">
+
+        <div class="event-card__trail">     
+           
+
+          <button matMiniFab class="btn-danger" (click)="remove(l.municipalityId)" [matTooltip]="'Eliminar lugar'">
             <mat-icon>delete</mat-icon>
           </button>
-        </div>
+         </div>
+        
       </mat-card>
     </div>
   </ng-container>

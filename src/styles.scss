@@ -6,7 +6,8 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 @use 'assets/styles/md3-utilities';
-@import '@material-design-icons/font';
+@use '@material-design-icons/font';
+//@import '@material-design-icons/font';
 
 
 html {
@@ -19,6 +20,9 @@ html {
     density: 0,
   ));
 }
+
+
+
 
 body {
   // Default the application to a light color theme. This can be changed to
@@ -40,5 +44,7 @@ body {
 
 /*html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  max-width: 1200px; margin: 0 auto;}*/
+
+
 
 

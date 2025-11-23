@@ -36,6 +36,7 @@
   align-self: center;
   color: rgba(0,0,0,.45);
 }
+
 .event-card__title   { margin: 0; font-weight: 600; }
 
 .event-card__place {
@@ -43,3 +44,8 @@
   color: rgba(0,0,0,.72); 
   font-size: .875rem;
 }
+.btn-danger {
+  background: #d32f2f !important;
+  color: #fff !important;
+}
+.btn-danger:hover { background: #b71c1c !important; }
