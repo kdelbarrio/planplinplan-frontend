@@ -1,0 +1,24 @@
+header {
+    color: var(--mat-sys-primary);
+    background: var(--mat-sys-primary-container);
+    padding:1em;
+
+}
+main {
+  margin-inline: auto;
+  padding: var(--space-3);
+  max-width: var(--container-sm);
+}
+
+@media (min-width: 840px)  { main { max-width: var(--container-md); } }
+@media (min-width: 1200px) { main { max-width: var(--container-lg); } }
+/*@media (min-width: 1600px) { main { max-width: var(--container-xl); } }*/
+
+
+
+footer {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.85rem;
+  color: #777;
+}

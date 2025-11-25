@@ -37,7 +37,8 @@
   color: rgba(0,0,0,.45);
 }
 
-.event-card__title   { margin: 0; font-weight: 600; }
+.event-card__title   { margin: 0; font-weight: 600;}
+.event-card__title a { color: var(--mat-sys-primary); text-decoration: none; }; 
 
 .event-card__place {
   margin: 0; 

@@ -1,10 +1,11 @@
 <div class="home-wrapper">
 
   <!-- Hero -->
-  <mat-card class="hero">
-    <div class="hero__title">Plan Plin Plan</div>
-    <div class="hero__subtitle">Planes en Euskadi para disfrutar en familia</div>
-  </mat-card>
+  <div class="hero">
+
+    <div class="hero__title"><h1>Planes para disfrutar en familia en Euskadi</h1></div>
+    <div class="hero__img"><img src="assets/images/portada.png" alt=""></div>
+  </div>
 
   <!-- Cuándo quieres tu plan -->
   <section class="section">
@@ -13,22 +14,22 @@
     </div>
 
     <div class="quick-grid">
-      <button mat-button class="quick" (click)="goToday()">
+      <button matButton="elevated" class="quick" (click)="goToday()">
         <mat-icon>calendar_today</mat-icon>
         <span>Hoy</span>
       </button>
 
-      <button mat-button class="quick" (click)="goTomorrow()">
+      <button matButton="elevated" class="quick" (click)="goTomorrow()">
         <mat-icon>event</mat-icon>
         <span>Mañana</span>
       </button>
 
-      <button mat-button class="quick" (click)="goNextWeekend()">
+      <button matButton="elevated" class="quick" (click)="goNextWeekend()">
         <mat-icon>weekend</mat-icon>
         <span>Fin de semana</span>
       </button>
 
-      <button mat-button class="quick" (click)="openDateDialog()">
+      <button matButton="elevated" class="quick" (click)="openDateDialog()">
         <mat-icon>date_range</mat-icon>
         <span>Otra fecha</span>
       </button>

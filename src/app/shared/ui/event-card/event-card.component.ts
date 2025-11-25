@@ -21,4 +21,6 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class EventCardComponent {
   @Input() event!: EventVM;
+  @Input() from?: string;              // 'planes' | 'home' | 'favorites'...
+  @Input() filters: any = null;        // filtros activos (si aplica)
 }

@@ -30,7 +30,7 @@
 
 </mat-card>
 -->
-<mat-card class="event-card mat-elevation-z1" appearance="outlined" [routerLink]="['/event', event.id]">
+<mat-card class="event-card mat-elevation-z1" appearance="outlined" [routerLink]="['/event', event.id]" [state]="from ? { from, filters } : undefined">
       <div class="event-card__lead">
         <img mat-card-sm-image *ngIf="event.imageUrl" [src]="event.imageUrl" alt="" loading="lazy" >
       </div>

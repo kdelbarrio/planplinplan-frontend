@@ -1,4 +1,5 @@
-<section class="container events">
+<section class="events">
+    <h1>Planes</h1>
 <!-- FILTROS -->
   <header class="events__filters">
       <mat-chip-set aria-label="Filtros activos" class="events__chips" *ngIf="chips().length">
@@ -23,7 +24,10 @@
 
   <div class="events__grid" *ngIf="!loading()">
     <ng-container *ngIf="items().length; else empty">
-      <app-event-card *ngFor="let ev of items()" [event]="ev" />
+      <app-event-card *ngFor="let ev of items()"
+        [event]="ev"
+        from="planes"
+        [filters]="currentFilters ()"/>
 
     </ng-container>
 

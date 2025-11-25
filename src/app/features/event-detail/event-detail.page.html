@@ -1,69 +1,109 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button routerLink="/planes">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
-  <span>Planes</span>
-</mat-toolbar>
+<section class="container event-detail" *ngIf="event">
+  <div class="back-row">
+    <button mat-button type="button" (click)="goBackToPlans()" aria-label="Volver a planes">
+      <mat-icon>arrow_back</mat-icon>
+      <span>Planes</span>
+    </button>
+  </div>
 
-<div class="content" *ngIf="event">
-  <mat-card appearance="outlined">
-    <img *ngIf="event.imageUrl" [src]="event.imageUrl" alt="" mat-card-image>
-    
-    <mat-card-content>
-      <h1 class="title">{{ event.title }}</h1>
-      
-      <!-- Location and Date -->
-      <div class="metadata">
-        <p class="location">
-          <mat-icon>location_on</mat-icon>
-          {{ event.place }}
-        </p>
-        <p class="date" *ngIf="event.when?.start">
-          <mat-icon>calendar_today</mat-icon>
-          {{ event.when.start | dateLocale }}
-          <ng-container *ngIf="event.when?.end"> - {{ event.when.end | dateLocale }}</ng-container>
-        </p>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero__media">
+      <img
+        [src]="event.imageUrl || 'assets/placeholder-event.svg'"
+        [alt]=""
+        loading="lazy" />
+    </div>
+
+    <div class="hero__main">
+      <h1 class="hero__title mat-headline-small">
+        {{ event.title }}
+      </h1>
+
+      <div class="hero__cta">
+        <button
+          mat-fab
+          extended
+          color="primary"
+          (click)="toggleFav()"
+          [matTooltip]="isFav ? 'Quitar de mis Planes' : 'Añadir a Mis planes'"
+          aria-label="Añadir o quitar de favoritos">
+          <mat-icon>{{ isFav ? 'star' : 'star_border' }}</mat-icon>
+          {{ isFav ? 'En Mis planes' : 'Añadir a Mis planes' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- META -->
+  <div class="meta mat-body-medium">
+    <div *ngIf="event.municipality || $any(event).territory || $any(event).province" class="meta__row">
+      <span class="meta__label">
+        Lugar:
+        {{ event.municipality }}
+        <ng-container *ngIf="$any(event).territory || $any(event).province">
+          ({{ $any(event).territory || $any(event).province }})
+        </ng-container>
+      </span>
+    </div>
+
+    <div class="meta__row">
+      <span class="meta__label">
+        Fecha:
+        {{ event.when.start | dateLocale }}
+        <ng-container *ngIf="event.when.end"> – {{ event.when.end | dateLocale }}</ng-container>
+      </span>
+    </div>
+
+    <div *ngIf="$any(event).price != null" class="meta__row">
+      <span class="meta__label">
+        Precio:
+        <ng-container *ngIf="$any(event).price === 0; else priced">
+          Gratis
+        </ng-container>
+        <ng-template #priced>{{ $any(event).price }} €</ng-template>
+      </span>
+    </div>
+  </div>
+
+  <!-- DESCRIPCIÓN -->
+  <div class="description mat-body-medium" *ngIf="event.description">
+    <div [innerHTML]="event.description | safeHtml"></div>
+  </div>
+
+  <!-- DETALLES -->
+  <section class="details">
+    <h2 class="details__title mat-headline-small">Detalles:</h2>
+
+    <div class="details__grid">
+      <div class="detail">
+        <div class="detail__label mat-title-medium">Accesibilidad</div>
+        <div class="detail__value mat-body-medium">
+          <ng-container *ngIf="$any(event).accessibility?.length; else noAcc">
+            {{ $any(event).accessibility.join(', ') }}
+          </ng-container>
+          <ng-template #noAcc>No se indica</ng-template>
+        </div>
       </div>
 
-      <!-- Description -->
-      <div class="description" [innerHTML]="event.description | safeHtml"></div>
-
-      <!-- Details Section -->
-      <section class="details">
-        <h2>Detalles:</h2>
-        
-        <div class="detail-row">
-          <div class="detail-item">
-            <h3>Accesibilidad</h3>
-            <p>{{ event.accessibility || 'No especificada' }}</p>
-          </div>
-          
-          <div class="detail-item">
-            <h3>Edad recomendada</h3>
-            <p>{{ event.age_min || 'No especificada' }}</p>
-          </div>
+      <div class="detail">
+        <div class="detail__label mat-title-medium">Edad recomendada</div>
+        <div class="detail__value mat-body-medium">
+          <ng-container *ngIf="event.age_min != null || event.age_max != null; else noAge">
+            <ng-container *ngIf="event.age_min != null && event.age_max != null">
+              {{ event.age_min }}–{{ event.age_max }} años
+            </ng-container>
+            <ng-container *ngIf="event.age_min != null && event.age_max == null">
+              A partir de {{ event.age_min }} años
+            </ng-container>
+            <ng-container *ngIf="event.age_min == null && event.age_max != null">
+              Hasta {{ event.age_max }} años
+            </ng-container>
+          </ng-container>
+          <ng-template #noAge>No se indica</ng-template>
         </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- Tags -->
-       <!--
-      <mat-chip-set>
-        <mat-chip *ngFor="let tag of event.tags">{{ tag }}</mat-chip>
-      </mat-chip-set>-->
-    </mat-card-content> 
-
-    <!-- Action Button -->
-    <mat-card-actions>
-      <button mat-fab extended color="primary" class="favorite-button">
-        <mat-icon>star</mat-icon>
-        Añadir a favoritos
-      </button>
-      <button mat-icon-button
-        [attr.aria-pressed]="isFav ? 'true' : 'false'"
-        [matTooltip]="isFav ? 'Quitar de favoritos' : 'Guardar en favoritos'"
-        (click)="toggleFav()">
-        <mat-icon>{{ isFav ? 'favorite' : 'favorite_border' }}</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+</section>

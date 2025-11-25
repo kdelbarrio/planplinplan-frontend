@@ -1,26 +1,46 @@
 .home-wrapper {
   display: grid;
   gap: 16px;
-  padding: 16px;
+
 }
 
 .hero {
-  padding: 20px 16px;
-  border-radius: 16px;
+  /*padding: 20px 16px;
+  border-radius: 16px;*/
+  /*background-color:  var(--mat-sys-primary-container);*/
+    display: grid;
+    grid-gap: 8px;
+    gap: 8px;
+    
+    grid-auto-flow: row;
 
-  .hero__title {
-    font-size: 20px;
-    font-weight: 700;
+  .hero__title h1{
+    font-size: 2.5em;
+    font-weight: 300;
+    line-height: 1.1em;
+    padding: 10px;
   }
   .hero__subtitle {
     margin-top: 4px;
     opacity: 0.7;
   }
+  .hero__img {
+    opacity: 0.7;
+
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
 }
 
 .section {
-  display: grid;
-  gap: 12px;
+    display: grid;
+    gap: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
 
   &__header {
     display: flex;
@@ -29,7 +49,7 @@
 
     h2 {
       margin: 0;
-      font-size: 18px;
+      font-size: 24px;
       font-weight: 600;
     }
   }
@@ -38,17 +58,26 @@
 /* “¿Cuándo quieres tu plan?” */
 .quick-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 8px;
 
   .quick {
-    height: 72px;
+    height: 90px;
     border-radius: 16px;
     display: grid;
     place-items: center;
     gap: 6px;
     flex-direction: column;
     text-transform: none;
+    font-size: 16px;
+    padding: 20px 0;
+  
+    mat-icon {
+      font-size: 28px;
+      height: 28px;
+      width: 28px;
+      margin:0;
+    }
   }
 }
 
@@ -142,8 +171,19 @@
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (min-width: 480px) {
+  .hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  
+    .hero__title h1 {
+    font-size: 5em;
+    }
+  }
   .quick-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    
+  }
+  section {
+     padding: 40px;
   }
 }

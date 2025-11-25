@@ -1,0 +1,48 @@
+<mat-toolbar color="primary" class="header-toolbar">
+
+  <!-- Logo -->
+  <a routerLink="/" class="logo">
+    <img src="assets/images/logo-planplinplan.png" width="150px" alt="Plan Plin Plan" />
+  </a>
+  <span class="spacer"></span>
+  <!-- Desktop menu -->
+  <ng-container *ngIf="isDesktop$ | async; else mobileMenu">
+    <nav class="desktop-nav">
+      <a mat-button routerLink="/buscar" routerLinkActive="active" [attr.aria-current]="rla.isActive ? 'page' : null" #rla="routerLinkActive">
+        <mat-icon>search</mat-icon>
+        Buscar plan
+      </a>
+
+      <a mat-button routerLink="/favoritos/lugares" routerLinkActive="active" [attr.aria-current]="rla2.isActive ? 'page' : null" #rla2="routerLinkActive">
+        <mat-icon>place</mat-icon>
+        Mis lugares
+      </a>
+
+      <a mat-button routerLink="/favoritos/planes" routerLinkActive="active" [attr.aria-current]="rla3.isActive ? 'page' : null" #rla3="routerLinkActive">
+        <mat-icon>star</mat-icon>
+        Mis planes
+      </a>
+    </nav>
+  </ng-container>
+
+</mat-toolbar>
+
+<!-- Mobile bottom navigation -->
+<ng-template #mobileMenu>
+    <nav class="bottom-nav" role="navigation" aria-label="Navegación inferior">
+      <a class="item" routerLink="/buscar" routerLinkActive="active" [attr.aria-current]="rla.isActive ? 'page' : null" #rla="routerLinkActive">
+        <span class="icon-wrap"><mat-icon>search</mat-icon></span>
+        <span class="label">Buscar plan</span>
+      </a>
+
+      <a class="item" routerLink="/favoritos/lugares" routerLinkActive="active" [attr.aria-current]="rla2.isActive ? 'page' : null" #rla2="routerLinkActive">
+        <span class="icon-wrap"><mat-icon>place</mat-icon></span>
+        <span class="label">Mis lugares</span>
+      </a>
+
+      <a class="item" routerLink="/favoritos/planes" routerLinkActive="active" [attr.aria-current]="rla3.isActive ? 'page' : null" #rla3="routerLinkActive">
+        <span class="icon-wrap"><mat-icon>star</mat-icon></span>
+        <span class="label">Mis planes</span>
+      </a>
+    </nav>
+</ng-template>

@@ -9,7 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [MatIconModule, RouterLink, RouterLinkActive, MatToolbarModule],
   template: `
     <mat-toolbar color="primary">
-      <span><a routerLink="/home"><img src="assets/images/logo.svg" alt="Plan Plin Plan"></a></span>
+      <span><a routerLink="/home"><img width="150px" src="assets/images/logo-planplinplan.png" alt="Plan Plin Plan"></a></span>
     </mat-toolbar>
     <nav class="bottom-nav" role="navigation" aria-label="Navegación inferior">
       <a class="item" routerLink="/buscar" routerLinkActive="active" [attr.aria-current]="rla.isActive ? 'page' : null" #rla="routerLinkActive">

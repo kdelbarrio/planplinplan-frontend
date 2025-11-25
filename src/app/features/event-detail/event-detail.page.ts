@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute , RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../core/services/api.service';
 import { adaptEvent } from '../../core/adapters/event.adapter';
 import { DateLocalePipe } from '../../shared/pipes/date-locale.pipe';
@@ -17,9 +17,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 @Component({
   standalone: true,
   templateUrl: './event-detail.page.html',
+  styleUrls: ['./event-detail.page.scss'],
   imports: [
     NgIf,
-    RouterLink,
     DateLocalePipe,
     MatButtonModule,
     MatIconModule,
@@ -34,11 +34,25 @@ export class EventDetailPage {
   private route = inject(ActivatedRoute);
   private api = inject(ApiService);
   private favs = inject(FavoritesService);
+  private router = inject(Router);
 
   event: ReturnType<typeof adaptEvent> | undefined;
   isFav = false;
 
+  /** Filtros que pudieran llegar desde la página Planes */
+  private backFilters: Record<string, any> | undefined;
+  /** Origen de la navegación (solo nos importa 'planes') */
+  private fromPage: 'planes' | string | undefined;
+
   ngOnInit() {
+
+    // Recuperamos el estado de navegación (filtros y from)
+    const nav = this.router.getCurrentNavigation();
+    const state = (nav?.extras?.state ?? {}) as any;
+
+    this.backFilters = state?.filters;
+    this.fromPage = state?.from; 
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.api.getEvent(id).subscribe(async dto => {
       // 1) Adaptamos el DTO al modelo de evento
@@ -97,5 +111,16 @@ export class EventDetailPage {
     });
 
     this.isFav = true;
+  }
+
+  /** Enlace “Planes”: solo mantiene filtros si viene de la página Planes */
+  goBackToPlans() {
+    if (this.fromPage === 'planes' && this.backFilters && Object.keys(this.backFilters).length) {
+      this.router.navigate(['/planes'], { queryParams: this.backFilters });
+      return;
+    }
+
+    // resto de casos: ir a /planes sin filtros
+    this.router.navigate(['/planes']);
   }
 }
