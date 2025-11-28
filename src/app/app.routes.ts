@@ -7,6 +7,7 @@ import { FavoritesPlansPage } from './features/favorites/favorites-plans.page';
 import { FavoritesPlacesPage } from './features/favorites/favorites-places.page';
 import { authGuard } from './core/guards/auth.guard';
 import { AppShellComponent } from './layout/app-shell.component';
+import { InfoComponent } from './features/info/info.component';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,7 @@ export const routes: Routes = [
     { path: 'event/:id', component: EventDetailPage, title: 'Detalle del Plan' },
     { path: 'favoritos/planes', component: FavoritesPlansPage, title: 'Planes favoritos' },
     { path: 'favoritos/lugares', component: FavoritesPlacesPage, title: 'Lugares favoritos' },
+    { path: 'info', component: InfoComponent, title: 'Información'}
   ]
   },
   { path: '**', redirectTo: '' }

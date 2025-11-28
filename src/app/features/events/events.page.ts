@@ -188,7 +188,7 @@ export class EventsPage {
     // Mantén el per_page actual (útil si lo cambiaste)
     next['per_page'] = String(this.perPage());
 
-    // ❗ Reemplaza completamente los params (sin merge) y
+    // Reemplaza completamente los params (sin merge) y
     //    NO llamamos a this.load(): el effect reaccionará a qp
     this.router.navigate([], {
       relativeTo: this.route,

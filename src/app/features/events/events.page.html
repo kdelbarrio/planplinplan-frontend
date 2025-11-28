@@ -2,6 +2,7 @@
     <h1>Planes</h1>
 <!-- FILTROS -->
   <header class="events__filters">
+    <div>
       <mat-chip-set aria-label="Filtros activos" class="events__chips" *ngIf="chips().length">
       <mat-chip-row
         *ngFor="let c of chips(); trackBy: chipTrackBy"
@@ -10,12 +11,14 @@
         <mat-icon matChipRemove>close</mat-icon>
         {{ c.text }}
       </mat-chip-row>
-    </mat-chip-set>
-
+      </mat-chip-set>
+    </div>
+    <div>
     <button matFab extended (click)="openFilters()">
       <mat-icon>search</mat-icon>
       Filtrar
     </button>
+    </div>
   </header>
 
   <div class="spinner" *ngIf="loading()">

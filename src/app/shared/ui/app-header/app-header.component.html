@@ -22,6 +22,11 @@
         <mat-icon>star</mat-icon>
         Mis planes
       </a>
+
+      <a mat-button routerLink="/info" routerLinkActive="active" [attr.aria-current]="rla4.isActive ? 'page' : null" #rla4="routerLinkActive">
+        <mat-icon>info</mat-icon>
+        Información
+      </a>
     </nav>
   </ng-container>
 
@@ -43,6 +48,10 @@
       <a class="item" routerLink="/favoritos/planes" routerLinkActive="active" [attr.aria-current]="rla3.isActive ? 'page' : null" #rla3="routerLinkActive">
         <span class="icon-wrap"><mat-icon>star</mat-icon></span>
         <span class="label">Mis planes</span>
+      </a>
+      <a class="item" routerLink="/info" routerLinkActive="active" [attr.aria-current]="rla4.isActive ? 'page' : null" #rla4="routerLinkActive">
+        <span class="icon-wrap"><mat-icon>info</mat-icon></span>
+        <span class="label">Información</span>  
       </a>
     </nav>
 </ng-template>

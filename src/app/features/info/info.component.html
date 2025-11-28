@@ -1,0 +1,75 @@
+<section class="container app-info">
+
+  <!-- Cabecera -->
+  <header class="app-info__header">
+    <div class="app-info__titles">
+      <h1 class="app-info__title">
+        Acerca de Plan Plin Plan
+      </h1>
+      <p class="mat-body-medium app-info__subtitle">
+        Información general sobre el sitio web y las fuentes de datos utilizadas.
+      </p>
+    </div>
+  </header>
+
+  <!-- Card principal -->
+  <mat-card class="app-info__card" appearance="outlined">
+    <mat-card-content class="app-info__content">
+
+      <p class="mat-body-medium">
+        El sitio web <strong>Plan Plin Plan</strong> te permite informarte sobre los
+        eventos y actividades, principalmente culturales, que se desarrollan en
+        Euskadi y que están dirigidos a familias con hijos e hijas.
+      </p>
+
+      <p class="mat-body-medium">
+        <strong>Plan Plin Plan</strong> pretende centralizar la oferta de actividades
+        y eventos tanto de los agentes públicos como privados.
+      </p>
+
+      <p class="mat-body-medium">
+        Podrás realizar búsquedas de eventos y actividades para realizar en familia
+        en Euskadi en la fecha deseada, de una forma sencilla, categorizada,
+        accesible y desde cualquier dispositivo.
+      </p>
+
+      <p class="mat-body-medium">
+        La información y datos de las actividades y eventos se obtienen del portal de
+        <strong>Datos abiertos del Gobierno Vasco</strong> (<a href="https://opendata.euskadi.eus" target="_blank" rel="noopener noreferrer">opendata.euskadi.eus</a>)
+        y, principalmente, a través de las siguientes APIs:
+      </p>
+
+      <!-- Lista de APIs -->
+      <section class="app-info__apis">
+        <h2 class="mat-title-medium app-info__apis-title">APIs utilizadas</h2>
+
+        <div class="app-info__apis-grid">
+          <article class="api-card" *ngFor="let api of apis">
+            <h3 class="mat-title-small api-card__name">{{ api.name }}</h3>
+            <p class="mat-body-small api-card__description">
+              {{ api.description }}
+            </p>
+            <a
+              class="mat-body-small api-card__link"
+              [href]="api.url"
+              target="_blank"
+              rel="noopener noreferrer">
+              <mat-icon aria-hidden="true">open_in_new</mat-icon>
+              <span>Más información</span>
+            </a>
+          </article>
+        </div>
+      </section>
+
+    </mat-card-content>
+
+    <!-- CTA opcional hacia los planes -->
+    <mat-card-actions class="app-info__actions">
+      <button mat-stroked-button color="primary" routerLink="/planes">
+        <mat-icon>event</mat-icon>
+        Ver planes
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+</section>

@@ -28,7 +28,7 @@
 
 @media (min-width: 600px)  { .events__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 840px)  { .events__grid { grid-template-columns: repeat(3, 1fr); } }
-@media (min-width: 1200px) { .events__grid { grid-template-columns: repeat(4, 1fr); } }
+//@media (min-width: 1200px) { .events__grid { grid-template-columns: repeat(4, 1fr); } }
 
 /* ===== Paginator ===== */
 .paginator {
