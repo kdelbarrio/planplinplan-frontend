@@ -32,19 +32,22 @@
         from="planes"
         [filters]="currentFilters ()"/>
 
-    </ng-container>
+      </ng-container>
 
+    
     <ng-template #empty>
       <p class="empty">No hay resultados con los filtros aplicados.</p>
     </ng-template>
   </div>
+  <ng-template [ngIf]="!loading() && items().length">
   <div class="paginator">
-    <mat-paginator 
-        [length]="total()"
-        [pageIndex]="page()-1"
-        [pageSize]="perPage()"
-        [pageSizeOptions]="[12,24,50,100]"
-        (page)="pageChange($event)">
-    </mat-paginator>
-  </div>
+      <mat-paginator 
+          [length]="total()"
+          [pageIndex]="page()-1"
+          [pageSize]="perPage()"
+          [pageSizeOptions]="[12,24,50,100]"
+          (page)="pageChange($event)">
+      </mat-paginator>
+      </div>
+      </ng-template>
 </section>

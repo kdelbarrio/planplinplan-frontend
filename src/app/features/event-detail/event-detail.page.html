@@ -69,11 +69,18 @@
   <!-- DESCRIPCIÓN -->
   <div class="description mat-body-medium" *ngIf="event.description">
     <div [innerHTML]="event.description | safeHtml"></div>
+
+    <div class="description__link" *ngIf="event.source_url">
+      <a [href]="event.source_url" target="_blank" rel="noopener">
+        Más información
+        <mat-icon inline>open_in_new</mat-icon>
+      </a>
+      </div>  
   </div>
 
   <!-- DETALLES -->
   <section class="details">
-    <h2 class="details__title mat-headline-small">Detalles:</h2>
+    <h2 class="details__title mat-headline-small">De interés:</h2>
 
     <div class="details__grid">
       <div class="detail">

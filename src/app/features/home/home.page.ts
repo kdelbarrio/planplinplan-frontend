@@ -5,9 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { firstValueFrom, Observable } from 'rxjs';
 
 import { DateRangeDialogComponent, DateRangeResult } from '../../shared/ui/date-range/date-range-dialog.component';
-import { LastPlansService, LastPlan } from '../../core/services/last-events.services';
+import { LastPlan, IndoorEventsService } from '../../core/services/indoor-events.services';
 
 export type PlanCard = LastPlan;
 
@@ -30,20 +31,37 @@ standalone: true,
 export class HomePage {
   private router = inject(Router);
   private dialog = inject(MatDialog);
-  private plansService = inject(LastPlansService);
+  //private plansService = inject(LastPlansService);
+  private indoorSvc = inject(IndoorEventsService);
+  
+  // Observable con los 5 eventos indoor más próximos a hoy
+  latestIndoor$: Observable<PlanCard[]> = this.indoorSvc.getNearestIndoorEvents(5);
 
   @ViewChild('carousel', { static: false }) carousel?: ElementRef<HTMLElement>;
 
   // Tipos de planes (ajusta ids/labels a tu backend)
   planTypes = [
+    //{ id: 'actividad-infantil', label: 'Actividad Infantil', icon: 'child_care' },
+    { id: 'bertsolarismo', label: 'Bertsolarismo', icon: 'mic' },
+    { id: 'cine-y-audiovisuales', label: 'Cine y audiovisuales', icon: 'movie' },
+    { id: 'concierto', label: 'Concierto', icon: 'music_note' },
+    //{ id: 'concurso', label: 'Concurso', icon: 'emoji_events' },
+    //{ id: 'conferencia', label: 'Conferencia', icon: 'record_voice_over' },
+    { id: 'danza', label: 'Danza', icon: 'sports_gymnastics' },
+    //{ id: 'eventosjornadas', label: 'Eventos/Jornadas', icon: 'event' },
+    { id: 'exposicion', label: 'Exposición', icon: 'photo_library' },
+    { id: 'experiencias-top', label: 'Experiencias Top', icon: 'auto_awesome' },
+    { id: 'festival', label: 'Festival', icon: 'festival' },
+    { id: 'feria', label: 'Feria', icon: 'storefront' },
+    { id: 'fiestas', label: 'Fiestas', icon: 'celebration' },
+    //{ id: 'formacion', label: 'Formación', icon: 'school' },
+    { id: 'rutas', label: 'Ruta', icon: 'hiking' },
+    { id: 'taller', label: 'Taller', icon: 'build' },
     { id: 'teatro', label: 'Teatro', icon: 'theaters' },
-    { id: 'concierto', label: 'Conciertos', icon: 'music_note' },
-    { id: 'museo', label: 'Museos', icon: 'apartment' },
-    { id: 'fiesta', label: 'Fiestas', icon: 'celebration' },
   ];
 
   latest: PlanCard[] = [];
-
+/*
   ngOnInit() {
     // Carga los 3 últimos planes
     this.plansService.getLatest(5).subscribe({
@@ -57,7 +75,7 @@ export class HomePage {
         ];
       }
     });
-  }
+  }*/
 
   // Navegaciones rápidas por fecha
   goToday() {

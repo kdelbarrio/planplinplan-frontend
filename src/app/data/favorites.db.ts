@@ -5,6 +5,8 @@ export interface PlanFav {
   addedAt: number;
   title?: string;
   image?: string;
+  start?: string;
+  end?: string;
   municipalityId?: string;
   municipality?: string;
 }

@@ -57,8 +57,10 @@
   <!-- Últimos planes añadidos -->
   <section class="section">
     <div class="section__header">
-      <h2>Últimos planes añadidos</h2>
-      <button mat-icon-button aria-label="Ver más" [routerLink]="['/planes']">
+      <h2>¿Y si hace mal tiempo? Planes a cubierto</h2>
+      <button mat-icon-button aria-label="Ver más" 
+       [routerLink]="['/planes']"
+       [queryParams]="{ is_indoor: true }">
         <mat-icon>arrow_forward</mat-icon>
       </button>
     </div>
@@ -69,6 +71,7 @@
       </button>
 
       <div #carousel class="carousel" tabindex="0">
+        <ng-container *ngIf="(latestIndoor$ | async) as latest; else noIndoor">
         <mat-card class="plan-card" *ngFor="let p of latest">
           <div class="img" [class.placeholder]="!p.image" [style.backgroundImage]="p.image ? 'url(' + p.image + ')' : ''"></div>
           <div class="meta">
@@ -81,6 +84,13 @@
             </a>
           </div>
         </mat-card>
+        </ng-container>
+        <ng-template #noIndoor>
+          <div class="no-items text-gray-600 p-4">
+            No hay eventos en interiores.
+          </div>
+        </ng-template>
+      
       </div>
 
       <button mat-mini-fab class="nav next" (click)="scroll('next')" aria-label="Siguiente">

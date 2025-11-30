@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router'; 
 import { FavoritesService } from '../../core/services/favorites.service';
+import { DateLocalePipe } from '../../shared/pipes/date-locale.pipe';
 import { MatIcon } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
@@ -14,7 +15,7 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './favorites-plans.page.html',
   styleUrls: ['./favorites-plans.page.scss'],
   standalone: true,
-  imports: [CommonModule, RouterLink, MatIcon, MatListModule, MatButtonModule, MatMenuModule, MatCardModule],
+  imports: [CommonModule, RouterLink, DateLocalePipe, MatIcon, MatListModule, MatButtonModule, MatMenuModule, MatCardModule],
 })
 export class FavoritesPlansPage {
 

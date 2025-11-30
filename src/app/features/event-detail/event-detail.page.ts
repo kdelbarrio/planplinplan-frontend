@@ -85,15 +85,23 @@ export class EventDetailPage {
       'Plan';
 
     const image =
-      (this.event as any)?.image ??
+      (this.event as any)?.imageUrl ??
       (this.event as any)?.cover ??
       (this.event as any)?.picture ??
+      undefined;
+
+    const start =
+      (this.event as any)?.when?.start ??
+      undefined;
+    
+    const end =
+      (this.event as any)?.when?.end ??
       undefined;
 
     const municipalityId =
       (this.event as any)?.location?.municipalityId ??
       (this.event as any)?.municipalityId ??
-      undefined;
+      undefined;  
 
     const municipality =
       (this.event as any)?.location?.municipality ??
@@ -104,8 +112,10 @@ export class EventDetailPage {
       id,
       title,
       image,
-      municipalityId,
+      //municipalityId,
       municipality,
+      start,
+      end,
       // si FavoritesService añade addedAt internamente, se puede omitir
       addedAt: Date.now()
     });

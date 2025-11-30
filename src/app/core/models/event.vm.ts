@@ -11,4 +11,5 @@ export interface EventVM {
   accessibility?: string[];
   age_min?: number | null;
   age_max?: number | null;
+  source_url?: string;
 }

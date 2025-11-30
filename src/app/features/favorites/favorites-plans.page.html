@@ -12,7 +12,8 @@
         <div class="event-card__body">
           <h2 class="event-card__title mat-title-medium line-clamp-2"><a [routerLink]="['/event', p.id]" class="no-underline">{{ p.title }}</a></h2>
           <div class="event-card__place">
-            {{ p.municipality }}
+            {{ p.municipality }} 
+            ({{ p.start | dateLocale }}<ng-container *ngIf="p.end"> – {{ p.end | dateLocale }}</ng-container>)
           </div>
         </div>
         <div class="event-card__trail"> 

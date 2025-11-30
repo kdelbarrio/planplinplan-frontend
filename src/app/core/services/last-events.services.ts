@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, catchError, of } from 'rxjs';
 
 export interface LastPlan {
@@ -15,11 +15,19 @@ export class LastPlansService {
   private http = inject(HttpClient);
 
   getLatest(limit = 5) {
-    return this.http.get<any>('/events').pipe(
+    const params = new HttpParams().set('per_page', String(Math.max(1, limit)));
+    return this.http.get<any>('/events', { params }).pipe(
       map(res => {
-        
         const items: any[] = Array.isArray(res) ? res : (res?.data ?? []);
-        return items.slice(0, limit).map((e: any) => ({
+
+        // Ordenar por id de forma descendente (aseguramos que compare números)
+        const sorted = items.slice().sort((a: any, b: any) => {
+          const ai = Number(a?.id ?? 0);
+          const bi = Number(b?.id ?? 0);
+          return bi - ai; // descendente
+        });
+
+        return sorted.slice(0, limit).map((e: any) => ({
           id: e.id,
           title: e.title ?? e.name,
           city: e.city ?? e.municipality ?? '',

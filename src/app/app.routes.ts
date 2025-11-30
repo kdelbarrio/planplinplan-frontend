@@ -14,8 +14,8 @@ export const routes: Routes = [
     path: '',
     component: AppShellComponent,
   children: [
-    { path: '', component: HomePage, title: 'Planes' },
-    { path: 'planes', component: EventsPage, title: 'Planes' },
+    { path: '', component: HomePage, title: 'Plan Plin Plan - Disfruta de los planes en familia' },
+    { path: 'planes', component: EventsPage, title: 'Planes para hacer en familia' },
     { path: 'buscar', component: SearchPage, title: 'Buscar Planes' },
     { path: 'event/:id', component: EventDetailPage, title: 'Detalle del Plan' },
     { path: 'favoritos/planes', component: FavoritesPlansPage, title: 'Planes favoritos' },

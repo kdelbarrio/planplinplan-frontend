@@ -13,4 +13,5 @@ export interface EventDTO {
   age_min?: number | null;
   age_max?: number | null;
   image_url?: string | null;
+  source_url?: string;
 }

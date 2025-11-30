@@ -104,7 +104,25 @@ export class EventsPage {
         })
       );
       const page: PageResponse<EventDTO> = res;
-      this.items.set(page.data.map(adaptEvent));
+
+      // Convertir y ordenar: primero eventos con fecha, por fecha asc; luego los sin fecha por id desc
+      const vms = page.data.map(adaptEvent);
+      vms.sort((a, b) => {
+        const aStart = a.when?.start;
+        const bStart = b.when?.start;
+
+        if (aStart && bStart) {
+          return aStart.getTime() - bStart.getTime();
+        }
+        if (aStart && !bStart) return -1; // a antes que b
+        if (!aStart && bStart) return 1;  // b antes que a
+
+        // Ambos sin fecha: fallback por id descendente
+        return Number(b.id) - Number(a.id);
+      });
+
+      //this.items.set(page.data.map(adaptEvent));
+      this.items.set(vms);
       this.total.set(page.total);
       if (page.perPage) this.perPage.set(page.perPage);
     } finally {
