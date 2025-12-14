@@ -31,8 +31,8 @@
     {
       "name": "events-api",
       "urls": [
-        "https://laravel-plan.ddev.site/api/events",
-        "https://laravel-plan.ddev.site/api/events/*"
+        "https://planplinplan.com/api/events",
+        "https://planplinplan.com/api/events/*"
       ],
       "cacheConfig": {
         "strategy": "freshness",

@@ -100,9 +100,9 @@
   </mat-form-field>
 
   <!-- Edad -->
-  <div class="group">
+  <div class="group" role="group">
     <div class="group-title">Edad recomendada</div>
-    <mat-chip-set class="chips" aria-label="Selecciona rango(s) de edad">
+    <mat-chip-set role="listbox" class="chips" aria-label="Selecciona rango(s) de edad">
       <mat-chip-option
         *ngFor="let a of ages(); trackBy: agesTrackBy"
         [selected]="a.selected"

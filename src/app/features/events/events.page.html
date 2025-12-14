@@ -3,7 +3,7 @@
 <!-- FILTROS -->
   <header class="events__filters">
     <div>
-      <mat-chip-set aria-label="Filtros activos" class="events__chips" *ngIf="chips().length">
+      <mat-chip-grid aria-label="Filtros activos" class="events__chips" *ngIf="chips().length">
       <mat-chip-row
         *ngFor="let c of chips(); trackBy: chipTrackBy"
         [removable]="true"
@@ -11,7 +11,7 @@
         <mat-icon matChipRemove>close</mat-icon>
         {{ c.text }}
       </mat-chip-row>
-      </mat-chip-set>
+      </mat-chip-grid>
     </div>
     <div>
     <button matFab extended (click)="openFilters()">

@@ -4,17 +4,23 @@ main {
   padding: var(--space-3);
   max-width: var(--container-sm);
 }
+  footer {
+    display:none;
+  }
 
-@media (min-width: 840px)  { main { max-width: var(--container-md); } }
+@media (min-width: 840px)  { 
+  main { max-width: var(--container-md); } 
+  footer {
+    display: block;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.85rem;
+    color: #2c2c2c; } 
+  }
 @media (min-width: 1200px) { main { max-width: var(--container-lg); } }
 /*@media (min-width: 1600px) { main { max-width: var(--container-xl); } }*/
 
 
 
-  footer {
-    
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.85rem;
-    color: #777;
-  }
+
+

@@ -41,9 +41,9 @@
     }
 
     /* Reserva espacio para que el contenido no quede oculto detrás del nav */
-    :host-context(app-shell) + .app-content,
-    :root .app-content {
-      padding-bottom: 76px;
+    :host-context(app-shell) + .app-main,
+    :root .app-main {
+      padding-bottom: 100px;
     }
     .spacer { flex: 1; }
     .mat-toolbar {

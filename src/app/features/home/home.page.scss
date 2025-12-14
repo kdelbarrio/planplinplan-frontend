@@ -115,12 +115,7 @@
   align-items: center;
 
   .nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index:100;
-    &.prev { left: -4px; }
-    &.next { right: -4px; }
+    display:none;
   }
 
   .carousel {
@@ -194,5 +189,14 @@
   }
   section {
      padding: 40px;
+  }
+  .carousel-wrap .nav {
+    display: block;
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index:100;
+    &.prev { left: -4px; }
+    &.next { right: -4px; }
   }
 }

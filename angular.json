@@ -24,8 +24,8 @@
               { "glob": "**/*", "input": "public" },
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/styles.scss"],
-            "serviceWorker": "ngsw-config.json"
+            "styles": ["src/styles.scss"]
+            
           },
           "configurations": {
             "development": {
@@ -37,7 +37,8 @@
               "optimization": true,
               "sourceMap": false,
               "extractLicenses": true,
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": "ngsw-config.json"
             }
           }
         },

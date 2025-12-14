@@ -16,6 +16,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDateRangePicker } from '@angular/material/datepicker';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 
 type AgeChip = { label: string; min: number; max: number | null; selected: boolean };
 
@@ -148,10 +149,11 @@ export class SearchPage {
   }
 
   // ---------- Edades ----------
-  toggleAge(chip: AgeChip) {
+   toggleAge(chip: AgeChip) {
     chip.selected = !chip.selected;
     this.ages.set([...this.ages()]);
   }
+  
 
   // ---------- Submit ----------
   submit() {
