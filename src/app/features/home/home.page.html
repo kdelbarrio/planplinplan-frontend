@@ -4,7 +4,20 @@
   <div class="hero">
 
     <div class="hero__title"><h1>Planes para disfrutar en familia en Euskadi</h1></div>
-    <div class="hero__img"><img src="assets/images/portada.png" alt=""></div>
+    <div class="hero__img">
+    <picture>
+      <source srcset="assets/images/portada.webp" type="image/webp" />
+      <img
+        src="assets/images/portada.png"
+        width="600"
+        height="354"
+        fetchpriority="high"
+        decoding="async"
+        alt=""
+      />
+    </picture>
+
+    </div>
   </div>
 
   <!-- Cuándo quieres tu plan -->
@@ -73,7 +86,22 @@
       <div #carousel class="carousel" tabindex="0">
         <ng-container *ngIf="(latestIndoor$ | async) as latest; else noIndoor">
         <mat-card class="plan-card" *ngFor="let p of latest">
-          <div class="img" [class.placeholder]="!p.image" [style.backgroundImage]="p.image ? 'url(' + p.image + ')' : ''"></div>
+          <!--<div class="img" [class.placeholder]="!p.image" [style.backgroundImage]="p.image ? 'url(' + p.image + ')' : ''"></div>-->
+                <!-- Imagen -->
+        <div class="img" [class.placeholder]="!p.image">
+          <img
+            *ngIf="p.image; else imgPlaceholder"
+            class="img__el"
+            [src]="p.image"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width="280"
+            height="160"
+            referrerpolicy="no-referrer"
+          />
+          <ng-template #imgPlaceholder></ng-template>
+        </div>  
           <div class="meta">
             <div class="title">{{ p.title }}</div>
             <div class="sub">{{ p.city }} ({{ p.date | date:'dd/MM/yyyy' }})</div>
@@ -86,7 +114,7 @@
         </mat-card>
         </ng-container>
         <ng-template #noIndoor>
-          <div class="no-items text-gray-600 p-4">
+          <div class="no-items">
             No hay eventos en interiores.
           </div>
         </ng-template>
