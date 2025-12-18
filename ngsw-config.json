@@ -31,14 +31,13 @@
     {
       "name": "events-api",
       "urls": [
-        "https://planplinplan.com/api/events",
-        "https://planplinplan.com/api/events/*"
+        "https://planplinplan.com/api/events/**"
       ],
       "cacheConfig": {
         "strategy": "freshness",
-        "maxSize": 100,
-        "maxAge": "1h",
-        "timeout": "5s"
+        "maxSize": 200,
+        "maxAge": "10m",
+        "timeout": "2s"
       }
     }
   ]

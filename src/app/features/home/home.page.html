@@ -5,17 +5,24 @@
 
     <div class="hero__title"><h1>Planes para disfrutar en familia en Euskadi</h1></div>
     <div class="hero__img">
-    <picture>
-      <source srcset="assets/images/portada.webp" type="image/webp" />
-      <img
-        src="assets/images/portada.png"
-        width="600"
-        height="354"
-        fetchpriority="high"
-        decoding="async"
-        alt=""
-      />
-    </picture>
+      <picture>
+        <source
+          type="image/webp"
+          srcset="
+            assets/images/portada-400.webp 400w,
+            assets/images/portada-600.webp 600w
+          "
+          sizes="(max-width: 400px) 400px, 600px"
+        />
+        <img
+          src="assets/images/portada-600.webp"
+          width="600"
+          height="354"
+          fetchpriority="high"
+          decoding="async"
+          alt=""
+        />
+      </picture>
 
     </div>
   </div>

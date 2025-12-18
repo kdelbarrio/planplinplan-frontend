@@ -40,7 +40,7 @@
     </ng-template>
   </div>
   <ng-template [ngIf]="!loading() && items().length">
-  <div class="paginator">
+  <div class="paginator" *ngIf="total() > perPage()">
       <mat-paginator 
           [length]="total()"
           [pageIndex]="page()-1"

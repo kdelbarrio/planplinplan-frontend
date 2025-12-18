@@ -15,7 +15,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 
-// 👉 IMPORTANTE: usamos toSignal para escuchar cambios en query params
+// usamos toSignal para escuchar cambios en query params
 import { toSignal } from '@angular/core/rxjs-interop';
 
 type PageResponse<T> = {
@@ -60,7 +60,7 @@ export class EventsPage {
   // Chips visibles
   chips = signal<Chip[]>([]);
 
-  // ✅ Señal reactiva de los query params (en vez de snapshot)
+  // Señal reactiva de los query params (en vez de snapshot)
   private qp = toSignal(this.route.queryParamMap, {
     initialValue: this.router.parseUrl(this.router.url).queryParamMap
   });
@@ -154,7 +154,7 @@ export class EventsPage {
       out.push({ key: 'type_slug', value: f['type_slug'], text: `Tipo: ${this.prettyType(f['type_slug'])}` });
     }
 
-    if (f['a11y'] === '1') out.push({ key: 'a11y', text: 'Accesible' });
+    if (f['accessibility_tags']) out.push({ key: 'accessibility_tags', value: f['accessibility_tags'], text: 'Accesible' });
 
     if (f['is_indoor'] === '1') out.push({ key: 'is_indoor', text: 'Indoor' });
 
@@ -180,7 +180,11 @@ export class EventsPage {
 
     switch (c.key) {
       case 'q':
+        delete next['q'];
+        break;
       case 'date':
+        delete next['date'];
+        break;
       case 'date_range':
         delete next['from'];
         delete next['to'];
@@ -190,7 +194,7 @@ export class EventsPage {
         break;
       case 'municipality':
       case 'type_slug':
-      case 'a11y':
+      case 'accessibility_tags':
       case 'is_indoor':
         delete next[c.key];
         break;

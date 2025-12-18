@@ -93,7 +93,7 @@ export class SearchPage {
         date_to:   this.parseDateOrNull(qpm.get('to')),   // backend usa 'to'
         place: qpm.get('municipality') ?? '',
         type:  qpm.get('type_slug')    ?? '',
-        a11yOnly:  qpm.get('a11y')      === '1',
+        a11yOnly:  qpm.get('accessibility_tags') === 'a11y',
         indoor:    qpm.get('is_indoor') === '1',
       }, { emitEvent: false });
 
@@ -170,7 +170,7 @@ export class SearchPage {
 
     if (v.place?.trim()) qp['municipality'] = v.place.trim();
     if (v.type)          qp['type_slug']    = v.type;
-    if (v.a11yOnly)      qp['a11y']         = '1';
+    if (v.a11yOnly)      qp['accessibility_tags'] = 'a11y';
     if (v.indoor)        qp['is_indoor']    = '1';
 
     // Edad → rango min/max

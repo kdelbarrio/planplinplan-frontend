@@ -29,6 +29,8 @@ export function adaptEvent(dto: EventDTO): EventVM {
       place: [ dto.municipality, dto.territory ].filter(Boolean).join(' · '),
       imageUrl: dto.image_url ?? undefined,
       source_url: dto.source_url ?? undefined,
-
+      accessibility: dto.accessibility,
+      age_min: dto.age_min,
+      age_max: dto.age_max,
     };
 }
