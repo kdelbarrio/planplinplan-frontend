@@ -32,5 +32,6 @@ export function adaptEvent(dto: EventDTO): EventVM {
       accessibility: dto.accessibility,
       age_min: dto.age_min,
       age_max: dto.age_max,
+      openingHours: dto.opening_hours ?? undefined,
     };
 }

@@ -52,6 +52,10 @@
         {{ event.when.start | dateLocale }}
         <ng-container *ngIf="event.when.end"> – {{ event.when.end | dateLocale }}</ng-container>
       </span>
+      <div *ngIf="event.openingHours" class="event-card__hours">
+        <span class="meta__label">Hora: {{ event.openingHours }} 
+        </span>
+      </div>
     </div>
 
     <div *ngIf="$any(event).price != null" class="meta__row">
@@ -67,12 +71,12 @@
 
   <!-- DESCRIPCIÓN -->
   <div class="description mat-body-medium" *ngIf="event.description">
-    <div [innerHTML]="event.description | safeHtml"></div>
+    <div class="description__content" [innerHTML]="event.description | safeHtml"></div>
 
     <div class="description__link" *ngIf="event.source_url">
-      <a [href]="event.source_url" target="_blank" rel="noopener">
+      <a matButton="tonal" [href]="event.source_url" target="_blank" rel="noopener">
         Más información
-        <mat-icon inline>open_in_new</mat-icon>
+        <mat-icon>open_in_new</mat-icon>
       </a>
       </div>  
   </div>

@@ -68,8 +68,11 @@
   gap: var(--space-4);
   margin-block-end: var(--space-6);
 }
-.description p {
+.description__content p {
   margin: 0 0 var(--space-3);
+}
+::ng-deep .description__content a {
+  color: var(--mat-sys-primary) !important;
 }
 
 /* ===== DETALLES ===== */

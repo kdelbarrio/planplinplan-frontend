@@ -1,35 +1,3 @@
-<!--<mat-card appearance="outlined" class="event-card round-l">
-
-  <div class="event-card__media ratio-16x9 round-m cover">
-   <img mat-card-sm-image *ngIf="event.imageUrl" [src]="event.imageUrl" alt="" >
-  </div>
-  <mat-card-content class="event-card__content flow">
-  <div>
-    <h2 class="event-card__title mat-title-medium">{{ event.title }}</h2>
-    <p class="event-card__summary mat-body-medium line-clamp-2">
-            Supporting line text lorem ipsum dolor sit amet, consectetur.
-     </p>
-  </div>
-  <div>
-      <span class="event-card__dates">>
-      {{ event.when.start | dateLocale }}
-      <ng-container *ngIf="event?.when?.end && !(event.when.start | isSameDay:event.when.end) ">- {{ event.when.end | dateLocale }}</ng-container>
-      </span>
-      <span class="event-card__type">Teatro</span>
-      <span *ngIf="event.place"> {{ event.place }}</span>
-  </div>
-  </mat-card-content>
-  <mat-divider></mat-divider>
-
-      <mat-card-actions class="event-card__actions cluster justify-between items-center">
-        <button mat-stroked-button color="primary" [routerLink]="['/event', event.id]">Detalles</button>
-        <button mat-icon-button aria-label="Guardar como favorito">
-          <mat-icon>star</mat-icon>
-        </button>
-      </mat-card-actions>
-
-</mat-card>
--->
 <mat-card class="event-card mat-elevation-z1" appearance="outlined" [routerLink]="['/event', event.id]" [state]="from ? { from, filters } : undefined">
       <div class="event-card__lead">
         <img mat-card-sm-image *ngIf="event.imageUrl" [src]="event.imageUrl" alt="" loading="lazy" >
@@ -45,7 +13,7 @@
           {{ event.when.start | dateLocale }}
           <ng-container *ngIf="event?.when?.end && !(event.when.start | isSameDay:event.when.end) ">- {{ event.when.end | dateLocale }}</ng-container>
           </span>
-          <!--<span *ngIf="event.place"  class="event-card__type"> {{ event.place }}</span>-->
+      
           <span *ngIf="event.municipality"  class="event-card__place"> {{ event.municipality }}</span>
         </div>
       </div>
