@@ -42,9 +42,10 @@ export class SearchPage {
 
   // ---- Edades (chips locales) ----
   ages = signal<AgeChip[]>([
-    { label: '3-6',      min: 3,  max: 6,  selected: false },
-    { label: '7-10',     min: 7,  max: 10, selected: false },
-    { label: '11 o más', min: 11, max: null, selected: false },
+    { label: 'De 0 a 3 años',      min: 0,  max: 3,  selected: false },
+    { label: 'De 4 a 8 años',      min: 4,  max: 8,  selected: false },
+    { label: 'De 9 a 12 años',     min: 9,  max: 12, selected: false },
+    //{ label: '11 o más', min: 11, max: null, selected: false },
   ]);
   agesTrackBy = (_: number, a: AgeChip) => a.label;
 

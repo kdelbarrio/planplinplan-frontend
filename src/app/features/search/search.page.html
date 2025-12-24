@@ -102,14 +102,16 @@
   <!-- Edad -->
   <div class="group" role="group">
     <div class="group-title">Edad recomendada</div>
-    <mat-chip-set role="listbox" class="chips" aria-label="Selecciona rango(s) de edad">
+    <!--<mat-chip-set  class="chips" aria-label="Selecciona rango(s) de edad">-->
+      <mat-chip-listbox  class="chips" aria-label="Selecciona rango(s) de edad">
       <mat-chip-option
         *ngFor="let a of ages(); trackBy: agesTrackBy"
         [selected]="a.selected"
         (click)="toggleAge(a)">
         {{ a.label }}
       </mat-chip-option>
-    </mat-chip-set>
+    <!--</mat-chip-set>-->
+    </mat-chip-listbox>
   </div>
 
   <!-- Checks -->
