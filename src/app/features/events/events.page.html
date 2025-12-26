@@ -25,6 +25,8 @@
     <mat-spinner diameter="36"></mat-spinner>
   </div>
 
+<!-- aquí empieza tu listado -->
+
   <div class="events__grid" *ngIf="!loading()">
     <ng-container *ngIf="items().length; else empty">
       <app-event-card *ngFor="let ev of items()"
@@ -51,3 +53,9 @@
       </div>
       </ng-template>
 </section>
+
+<app-euskalmet-widget
+  [municipality]="municipality()"
+  [showIndoorFilter]="true">
+</app-euskalmet-widget>
+

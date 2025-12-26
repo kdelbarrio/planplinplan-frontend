@@ -116,4 +116,14 @@
     </div>
   </section>
 
+   <!-- WIDGET EUSKALMET -->
+<div class="detail-weather">
+  <app-euskalmet-widget
+    *ngIf="event?.municipality"
+    [municipality]="event.municipality" >
+  </app-euskalmet-widget>
+</div>
+
+
+
 </section>

@@ -74,6 +74,12 @@
 ::ng-deep .description__content a {
   color: var(--mat-sys-primary) !important;
 }
+::ng-deep .description__content a:hover {
+  text-decoration: underline !important;
+}
+::ng-deep .description__link {
+  text-align: right;
+}
 
 /* ===== DETALLES ===== */
 .details__title {
@@ -101,4 +107,9 @@
 }
 .detail__value {
   color: rgba(0, 0, 0, 0.74);
+}
+
+/* ===== WIDGET EUSKALMET ===== */
+.detail-weather {
+  margin-top: var(--space-6);
 }

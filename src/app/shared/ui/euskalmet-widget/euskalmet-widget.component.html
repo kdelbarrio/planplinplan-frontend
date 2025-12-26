@@ -1,0 +1,33 @@
+<!-- Solo pinta si está enabled + tenemos URL resuelta -->
+@if (enabled && safeUrl()) {
+  <section class="euskalmet">
+    <div class="euskalmet__header">
+      <h3 class="euskalmet__title">El tiempo en {{ municipality }}</h3>
+      @if (showIndoorFilter) {
+      <div class="euskalmet__indoorFilter">
+          <button matFab extended (click)="goToIndoorPlans()">
+            Ver planes en interior
+          </button>
+      </div>
+      }
+    </div>
+
+    <div class="euskalmet__frameWrap">
+      <iframe
+        class="euskalmet__frame"
+        [src]="safeUrl()"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+        title="Widget del tiempo de Euskalmet"
+      ></iframe>
+          @if (widgetUrl()) {
+        <a class="euskalmet__link" [href]="widgetUrl()" target="_blank" rel="noopener noreferrer">
+          Fuente Euskalmet
+        </a>
+        }
+    </div>
+
+
+
+  </section>
+}

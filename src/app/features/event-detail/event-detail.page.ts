@@ -11,7 +11,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { SafeHtmlPipe } from '../../shared/pipes/safe-html.pipe';
 import { FavoritesService } from '../../core/services/favorites.service';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
+
+import { EuskalmetWidgetComponent } from '../../shared/ui/euskalmet-widget/euskalmet-widget.component';
+
 
 
 @Component({
@@ -27,7 +31,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatCardModule,
     MatChipsModule,
     SafeHtmlPipe,
-    MatTooltipModule
+    MatTooltipModule,
+    EuskalmetWidgetComponent,
   ]
 })
 export class EventDetailPage {
@@ -36,8 +41,10 @@ export class EventDetailPage {
   private favs = inject(FavoritesService);
   private router = inject(Router);
 
+
   event: ReturnType<typeof adaptEvent> | undefined;
   isFav = false;
+
 
   /** Filtros que pudieran llegar desde la página Planes */
   private backFilters: Record<string, any> | undefined;
@@ -62,6 +69,7 @@ export class EventDetailPage {
       if (this.event?.id != null) {
         this.isFav = await this.favs.isPlanFav(String(this.event.id));
       }
+
     });
   }
 
@@ -133,4 +141,6 @@ export class EventDetailPage {
     // resto de casos: ir a /planes sin filtros
     this.router.navigate(['/planes']);
   }
+
+
 }

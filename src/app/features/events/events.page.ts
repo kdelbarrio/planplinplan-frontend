@@ -15,6 +15,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 
+import { EuskalmetWidgetComponent } from '../../shared/ui/euskalmet-widget/euskalmet-widget.component';
+
+
 // usamos toSignal para escuchar cambios en query params
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -38,7 +41,8 @@ type Chip = { key: string; value?: string; text: string };
     MatIcon,
     MatDividerModule,
     MatChipsModule, 
-    MatButtonModule
+    MatButtonModule,
+    EuskalmetWidgetComponent,
   ],
   templateUrl: './events.page.html',
   styleUrls: ['./events.page.scss']
@@ -65,6 +69,9 @@ export class EventsPage {
     initialValue: this.router.parseUrl(this.router.url).queryParamMap
   });
 
+  // Municipio para el widget de Euskalmet
+  municipality = signal<string | null>(null);
+
   constructor() {
     // Este effect se ejecuta SIEMPRE que cambian los query params
     effect(() => {
@@ -78,6 +85,9 @@ export class EventsPage {
       });
 
       this.currentFilters.set(filters);
+
+      // municipio para el widget
+      this.municipality.set(filters['municipality'] ?? null);
 
       // Página (por defecto 1)
       this.page.set(Number(qpm.get('page') ?? 1));
@@ -156,7 +166,7 @@ export class EventsPage {
 
     if (f['accessibility_tags']) out.push({ key: 'accessibility_tags', value: f['accessibility_tags'], text: 'Accesible' });
 
-    if (f['is_indoor'] === '1') out.push({ key: 'is_indoor', text: 'Indoor' });
+    if (f['is_indoor'] === '1') out.push({ key: 'is_indoor', text: 'Interior' });
 
     // Edad: combinamos age_min / age_max en un único chip
     const min = f['age_min'] ? Number(f['age_min']) : undefined;

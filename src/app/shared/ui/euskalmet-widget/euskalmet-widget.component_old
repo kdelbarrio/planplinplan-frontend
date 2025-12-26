@@ -1,0 +1,53 @@
+import { Component, Input, OnChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { EuskalmetLocationService } from '../../services/euskalmet-location.service';
+import { environment } from '../../../../environments/environment';
+
+@Component({
+  selector: 'app-euskalmet-widget',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './euskalmet-widget.component.html',
+  styleUrls: ['./euskalmet-widget.component.scss'],
+})
+export class EuskalmetWidgetComponent implements OnChanges {
+  @Input() municipality: string | null = null;
+
+  enabled = environment.features.weatherWidget;
+
+  euskalmetId: string | null = null;
+  widgetUrl: string | null = null;
+  safeUrl: SafeResourceUrl | null = null;
+
+  constructor(
+    private euskalmet: EuskalmetLocationService,
+    private sanitizer: DomSanitizer
+  ) {}
+
+  ngOnChanges(): void {
+    if (!this.enabled || !this.municipality) {
+      this.reset();
+      return;
+    }
+
+    this.euskalmet.getLocationIdByMunicipality(this.municipality).subscribe((id) => {
+      this.euskalmetId = id;
+
+      if (!id) {
+        this.reset();
+        return;
+      }
+
+      // IMPORTANTE: usas /es/ como pedías en tu patrón
+      this.widgetUrl = `https://www.euskalmet.euskadi.eus/vamet/city_search/es/webmet00-${id}.html`;
+      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.widgetUrl);
+    });
+  }
+
+  private reset() {
+    this.euskalmetId = null;
+    this.widgetUrl = null;
+    this.safeUrl = null;
+  }
+}
